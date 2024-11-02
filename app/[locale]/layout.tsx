@@ -25,8 +25,10 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <Navbar />
-          {children}
+          <div className='pb-16 bg-slate-50'>
+            <Navbar />
+            {children}
+          </div>
         </NextIntlClientProvider>
       </body>
     </html>
