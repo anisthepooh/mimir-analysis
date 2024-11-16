@@ -1,7 +1,8 @@
 {
+  "message": "Hello {name}!",
   "license": "©2024 Mimir - Cannabis Test Report. This website and its content are protected under the GNU Affero General Public License version 3 (AGPL-3.0). This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.",
   "enterData": "Enter dates and test results to display a graph of the results",
-  "changingModel": "You are now changing the model to {{target}}, confirm to change.",
+  "changingModel": "You are now changing the model to {target}, confirm to change.",
   "interpretation": "Interpretation",
   "knowledgecenter": "Knowledge center",
   "contact": "Contact",
@@ -20,6 +21,8 @@
   "danish": "Danish",
   "english": "English",
   "powered_by": "Powered by",
+  "change_unit": "Change unit",
+  "pick_a_date": "Pick a date",
   "FAQ": {
     "haveQuestion": "Do you have a question?",
     "sendEmail": "Then send an email to the address below, and we will post the question and the answer here so everyone can benefit from it."
@@ -47,91 +50,90 @@
     "read_more": "Read more"
   },
   "defaultAnswers": {
-    "Title": "No results to show",
-    "Text": "Enter a test result to calculate a result",
-    "Calculation": "No test results entered",
-    "Outside": "The 30-day span for the model has been exceeded, therefore the result is only advisory"
+    "title": "No results to show",
+    "text": "Enter a test result to calculate a result",
+    "calculation": "No test results entered",
+    "outside": "The 30-day span for the model has been exceeded, therefore the result is only advisory"
   },
-  "model": {
-    "case1": {
-      "Title": "The model cannot predict the result yet.",
-      "Text": "Take the next test in 5 days.",
-      "Calculation": "The model has given the following result based on test no. {{testNumber}}."
-    },
-    "case2": {
-      "Title": "The model cannot predict the result yet.",
-      "Text": "Take the next test at least 2 days later.",
-      "Calculation": "The model has given the following result based on test no. {{testNumber}}."
-    },
-    "case3": {
-      "Title": "Value is outside the model's range (0.9 to 132 mg/mol).",
-      "Text": "The test value is too low for the model. Low values of this size can be interpreted as the excretion of residues from previous substance use, which are stored in the adipose tissue.",
-      "Calculation": "The model is out of range based on test no. {{testNumber}}."
-    },
-    "case4": {
-      "Title": "Value is outside the model's range (0.9 to 132 mg/mol).",
-      "Text": "The test value on {{date}} is too high, and a decrease must be awaited before the model can be used. Repeated high values can be considered signs of continued substance use.",
-      "Calculation": "The model is out of range based on test no. {{testNumber}}."
-    },
-    "case5": {
-      "Title": "Value is outside the model's range (0.9 to 132 mg/mol).",
-      "Text": "The test value is too low for the model. Low values of this size can be interpreted as the excretion of residues from previous substance use, stored in adipose tissue. NOTE: There is therefore no sign of new intake.",
-      "Calculation": "The model is out of range based on test no. {{testNumber}}."
-    },
-    "case6": {
-      "Calculation": "The model has given the following result based on test no. {{testNumber1}} and test no. {{testNumber2}}",
-      "case6_1": {
-        "Title": "Sign of new intake",
-        "Text": "There is evidence of new use. The next calculation will be based on the test from {{date}}."
-      },
-      "case6_2": {
-        "Title": "Sign of new intake.",
-        "Text": "There is evidence of new use. The next calculation will be based on the test from {{date}}."
-      },
-      "case6_3": {
-        "Title": "Risk of false prediction of new intake",
-        "Text": "NOTE: There is a possibility of a false positive prediction for up to 14 days from the test on {{date}}, so take the next test after {{nextDate}}, after which the model will be accurate."
-      },
-      "case6_4_1": {
-        "Title": "Sign of new intake",
-        "Text": "There is evidence of new use. The next calculation will be based on the test from {{date}}."
-      },
-      "case6_4_2": {
-        "Title": "New test required. The model cannot yet predict a result. There is a risk of false prediction of new intake.",
-        "Text": "NOTE: The result from the model is uncertain. Take the next test at least 2 days later. The next test result will be calculated based on the test from {{date}}. The model should then be accurate."
-      },
-      "case6_5": {
-        "Title": "No sign of new cannabis use.",
-        "Text": "There is no evidence of new cannabis use between {{date1}} and {{date2}}. The next test will still be calculated based on the test from {{date1}}.",
-        "Calculation": "The model has given the following result based on test no. {{testNumber1}} and test no. {{testNumber2}}."
-      }
-    },
-    "case7": {
-      "Title": "First test",
-      "Text": "The test value on {{date}} is the first entered test. Enter another test to see a result.",
-      "Calculation": "The model currently has only one test."
-    },
-    "case8": {
-      "Title": "No sign of new cannabis use.",
-      "Text": "There is no evidence of new cannabis use between {{date1}} and {{date2}}. Using the model for sporadic use, the next test will be calculated based on the most recent test, which means it is the test from {{date2}}.",
-      "Calculation": "The model has given the following result based on test no. {{testNumber1}} and test no. {{testNumber2}}."
-    },
-    "case9": {
-      "Title": "Sign of new cannabis use.",
-      "Text": "There is evidence of new cannabis use between {{date1}} and {{date2}}. The next test will be calculated based on the test from {{date2}}.",
-      "Calculation": "The model has given the following result based on test no. {{testNumber1}} and test no. {{testNumber2}}."
-    },
-    "case10": {
-      "Title": "The time between the two tests is too short",
-      "Text": "The number of hours between the tests is too low for the model. Therefore, take a new test.",
-      "Calculation": "The model cannot provide a result based on the short interval between the following dates {{date1}} and {{date2}}."
-    },
-    "case11": {
-      "Title": "The time between the two tests is too long",
-      "Text": "The number of hours between the tests is too high for the model. Therefore, take a new test no more than 120 hours after the most recent test.",
-      "Calculation": "The model cannot provide a result based on the long interval between the following dates {{date1}} and {{date2}}."
-    }
+  "case1": {
+    "title": "The model cannot predict the result yet.",
+    "text": "Take the next test in 5 days.",
+    "calculation": "The model has given the following result based on test no. {testNumber}."
   },
+  "case2": {
+    "title": "The model cannot predict the result yet.",
+    "text": "Take the next test at least 2 days later.",
+    "calculation": "The model has given the following result based on test no. {testNumber}."
+  },
+  "case3": {
+    "title": "Value is outside the model's range (0.9 to 132 mg/mol).",
+    "text": "The test value is too low for the model. Low values of this size can be interpreted as the excretion of residues from previous substance use, which are stored in the adipose tissue.",
+    "calculation": "The model is out of range based on test no. {testNumber}."
+  },
+  "case4": {
+    "title": "Value is outside the model's range (0.9 to 132 mg/mol).",
+    "text": "The test value on {date} is too high, and a decrease must be awaited before the model can be used. Repeated high values can be considered signs of continued substance use.",
+    "calculation": "The model is out of range based on test no. {testNumber}."
+  },
+  "case5": {
+    "title": "Value is outside the model's range (0.9 to 132 mg/mol).",
+    "text": "The test value is too low for the model. Low values of this size can be interpreted as the excretion of residues from previous substance use, stored in adipose tissue. NOTE: There is therefore no sign of new intake.",
+    "calculation": "The model is out of range based on test no. {testNumber}."
+  },
+  "case6": {
+    "calculation": "The model has given the following result based on test no. {testNumber1} and test no. {testNumber2}"
+  },
+  "case6_1": {
+    "title": "Sign of new intake",
+    "text": "There is evidence of new use. The next calculation will be based on the test from {date}."
+  },
+  "case6_2": {
+    "title": "Sign of new intake.",
+    "text": "There is evidence of new use. The next calculation will be based on the test from {date}."
+  },
+  "case6_3": {
+    "title": "Risk of false prediction of new intake",
+    "text": "NOTE: There is a possibility of a false positive prediction for up to 14 days from the test on {date}, so take the next test after {nextDate}, after which the model will be accurate."
+  },
+  "case6_4_1": {
+    "title": "Sign of new intake",
+    "text": "There is evidence of new use. The next calculation will be based on the test from {date}."
+  },
+  "case6_4_2": {
+    "title": "New test required. The model cannot yet predict a result. There is a risk of false prediction of new intake.",
+    "text": "NOTE: The result from the model is uncertain. Take the next test at least 2 days later. The next test result will be calculated based on the test from {date}. The model should then be accurate."
+  },
+  "case6_5": {
+    "title": "No sign of new cannabis use.",
+    "text": "There is no evidence of new cannabis use between {date1} and {date2}. The next test will still be calculated based on the test from {date1}.",
+    "calculation": "The model has given the following result based on test no. {testNumber1} and test no. {testNumber2}."
+  },
+  "case7": {
+    "title": "First test",
+    "text": "The test value on {date} is the first entered test. Enter another test to see a result.",
+    "calculation": "The model currently has only one test."
+  },
+  "case8": {
+    "title": "No sign of new cannabis use.",
+    "text": "There is no evidence of new cannabis use between {date1} and {date2}. Using the model for sporadic use, the next test will be calculated based on the most recent test, which means it is the test from {date2}.",
+    "calculation": "The model has given the following result based on test no. {testNumber1} and test no. {testNumber2}."
+  },
+  "case9": {
+    "title": "Sign of new cannabis use.",
+    "text": "There is evidence of new cannabis use between {date1} and {date2}. The next test will be calculated based on the test from {date2}.",
+    "calculation": "The model has given the following result based on test no. {testNumber1} and test no. {testNumber2}."
+  },
+  "case10": {
+    "title": "The time between the two tests is too short",
+    "text": "The number of hours between the tests is too low for the model. Therefore, take a new test.",
+    "calculation": "The model cannot provide a result based on the short interval between the following dates {date1} and {date2}."
+  },
+  "case11": {
+    "title": "The time between the two tests is too long",
+    "text": "The number of hours between the tests is too high for the model. Therefore, take a new test no more than 120 hours after the most recent test.",
+    "calculation": "The model cannot provide a result based on the long interval between the following dates {date1} and {date2}."
+  },
+
   "Navbar": {
     "select_language": "Change language"
   }

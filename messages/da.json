@@ -1,7 +1,7 @@
 {
   "license": "©2024 Mimir - Cannabis Test Rapport. Dette websted og dets indhold er beskyttet under GNU Affero General Public License version 3 (AGPL-3.0). Denne software er distribueret i håbet om at være nyttig, men UDEN NOGEN GARANTI; uden endda den stiltiende garanti om SALGBARHED eller EGNETHET TIL ET BESTEMT FORMÅL. Se GNU Affero General Public License for flere detaljer.",
   "enterData": "Indtast dato'er og prøve resultater for at få vist en graf over resultater",
-  "changingModel": "Du ændrer nu modellen til {{target}}, bekræft for at ændre.",
+  "changingModel": "Du ændrer nu modellen til {target}, bekræft for at ændre.",
   "interpretation": "Fortolkning",
   "knowledgecenter": "Videnscenter",
   "contact": "Kontakt",
@@ -20,6 +20,8 @@
   "danish": "Dansk",
   "english": "Engelsk",
   "powered_by": "Leveret af",
+  "change_unit": "Ændre enhed",
+  "pick_a_date": "Vælg dato",
   "FAQ": {
     "haveQuestion": "Har du et spørgsmål?",
     "sendEmail": "Så send en mail til understående mail, og vi vil lægge spørgsmålet samt svar op her, så alle kan få glæde af det."
@@ -47,90 +49,88 @@
     "read_more": "Læs mere"
   },
   "defaultAnswers": {
-    "Title": "Intet resultat at vise",
-    "Text": "Indtast et testsvar for at beregne et resultat",
-    "Calculation": "Ingen testsvar er indsat",
-    "Outside": "Spændet på de 30 dage for modellen er overskredet, resultatet er derfor udelukkende vejledende"
+    "title": "Intet resultat at vise",
+    "text": "Indtast et testsvar for at beregne et resultat",
+    "calculation": "Ingen testsvar er indsat",
+    "outside": "Spændet på de 30 dage for modellen er overskredet, resultatet er derfor udelukkende vejledende"
   },
-  "model": {
-    "case1": {
-      "Title": "Modellen kan endnu ikke forudsige resultatet.",
-      "Text": "Tag næste prøve efter 5 dage.",
-      "Calculation": "Modellen har givet følgende resultat baseret på test nr. {{testNumber}}."
-    },
-    "case2": {
-      "Title": "Modellen kan endnu ikke forudsige resultatet.",
-      "Text": "Tag næste prøve tidligst efter 2 dage.",
-      "Calculation": "Modellen har givet følgende resultat baseret på test nr. {{testNumber}}."
-    },
-    "case3": {
-      "Title": "Værdi er udenfor modellens rækkevidde (0,9 til 132 mg/mol).",
-      "Text": "Testværdien er for lav til modellen. Lave værdier i denne størrelse kan tolkes som udskillelse af rester fra tidligere stofbrug, som er ophobet i fedtvævet.",
-      "Calculation": "Modellen er uden for rækkevidde baseret på test nr. {{testNumber}}."
-    },
-    "case4": {
-      "Title": "Værdi er udenfor modellens rækkevidde (0,9 til 132 mg/mol).",
-      "Text": "Testværdien den {{date}} er for høj, og der må afventes et fald inden modellen kan anvendes. Gentagne høje værdier kan betragtes som tegn på fortsat stofbrug",
-      "Calculation": "Modellen er uden for rækkevidde baseret på test nr. {{testNumber}}."
-    },
-    "case5": {
-      "Title": "Værdi er udenfor modellens rækkevidde (0,9 til 132 mg/mol)",
-      "Text": "Testværdien er for lav til modellen. Lave værdier i denne størrelse kan tolkes som udskillelse af rester fra tidligere stofbrug, som er ophobet i fedtvævet. BEMÆRK: Der er derfor ikke tegn på nyt indtag",
-      "Calculation": "Modellen er uden for rækkevidde baseret på test nr. {{testNumber}}"
-    },
-    "case6": {
-      "Calculation": "Modellen har givet følgende resultat baseret på test nr. {{testNumber1}} og test nr. {{testNumber2}}",
-      "case6_1": {
-        "Title": "Tegn på nyt indtag",
-        "Text": "Der er evidens for nyt forbrug. Næste beregning vil ske med udgangspunkt i testen fra den {{date}}"
-      },
-      "case6_2": {
-        "Title": "Tegn på nyt indtag.",
-        "Text": "Der er evidens for nyt forbrug. Næste beregning vil ske med udgangspunkt i testen fra den {{date}}"
-      },
-      "case6_3": {
-        "Title": "Risiko for falsk forudsigelse af nyt indtag",
-        "Text": "BEMÆRK: Der er mulighed for en falsk positiv forudsigelse i op til 14 dage fra testen den {{date}}, foretag derfor næste test efter den {{nextDate}}, hvorefter modellen vil være præcis."
-      },
-      "case6_4_1": {
-        "Title": "Tegn på nyt indtag",
-        "Text": "Der er evidens for nyt forbrug. Næste beregning vil ske med udgangspunkt i testen fra den {{date}}"
-      },
-      "case6_4_2": {
-        "Title": "Ny prøve påkrævet. Modellen kan endnu ikke forudsige et resultat. Der er risiko for falsk forudsigelse af nyt indtag.",
-        "Text": "BEMÆRK: Resultatet fra modellen er usikkert. Tag næste prøve tidligst efter 2 dage. Næste testsvar vil blive beregnet på baggrund af testen fra den {{date}}. Modellen burde herefter være præcis"
-      },
-      "case6_5": {
-        "Title": "Intet tegn på nyt indtag af cannabis.",
-        "Text": "Der er ikke evidens for nyt cannabis forbrug mellem den {{date1}} og den {{date2}}. Næste prøve vil fortsat blive beregnet med udgangspunkt i testen fra den {{date1}}",
-        "Calculation": "Modellen har givet følgende resultat baseret på test nr. {{testNumber1}} og test nr. {{testNumber2}}"
-      }
-    },
-    "case7": {
-      "Title": "Første test",
-      "Text": "Testværdien den {{date}} er første indtastet test. Indtast endnu en test for at se et resultat",
-      "Calculation": "Modellen har kun en test på nuværende tidspunkt"
-    },
-    "case8": {
-      "Title": "Intet tegn på nyt indtag af cannabis.",
-      "Text": "Der er ikke evidens for nyt cannabis forbrug mellem den {{date1}} og den {{date2}}. Ved at bruge modellen for sporadisk forbrug vil næste prøve blive beregnet med udgangspunkt i den nyeste test, dette betyder at det er testen fra den {{date2}}",
-      "Calculation": "Modellen har givet følgende resultat baseret på test nr. {{testNumber1}} og test nr. {{testNumber2}}"
-    },
-    "case9": {
-      "Title": "Tegn på nyt indtag af cannabis.",
-      "Text": "Der er evidens for nyt cannabis forbrug mellem den {{date1}} og den {{date2}}. Næste prøve at blive beregnet med udgangspunkt i testen fra den {{date2}}",
-      "Calculation": "Modellen har givet følgende resultat baseret på test nr. {{testNumber1}} og test nr. {{testNumber2}}"
-    },
-    "case10": {
-      "Title": "Tiden imellem de 2 tests er for kort",
-      "Text": "Antal timer imellem testene er for lav til modellen. Foretag derfor en ny test",
-      "Calculation": "Modellen kan ikke give et resultat baseret på den korte afstand mellem følgende datoer {{date1}} og {{date2}}"
-    },
-    "case11": {
-      "Title": "Tiden i mellem de 2 tests er for lang",
-      "Text": "Antal timer imellem testene er for høj til modellen. Foretag derfor en ny test som ikke er mere end 120 timer efter seneste test",
-      "Calculation": "Modellen kan ikke give et resultat baseret på den lange afstand mellem følgende datoer {{date1}} og {{date2}}"
-    }
+  "case1": {
+    "title": "Modellen kan endnu ikke forudsige resultatet.",
+    "text": "Tag næste prøve efter 5 dage.",
+    "calculation": "Modellen har givet følgende resultat baseret på test nr. {testNumber}."
+  },
+  "case2": {
+    "title": "Modellen kan endnu ikke forudsige resultatet.",
+    "text": "Tag næste prøve tidligst efter 2 dage.",
+    "calculation": "Modellen har givet følgende resultat baseret på test nr. {testNumber}."
+  },
+  "case3": {
+    "title": "Værdi er udenfor modellens rækkevidde (0,9 til 132 mg/mol).",
+    "text": "Testværdien er for lav til modellen. Lave værdier i denne størrelse kan tolkes som udskillelse af rester fra tidligere stofbrug, som er ophobet i fedtvævet.",
+    "calculation": "Modellen er uden for rækkevidde baseret på test nr. {testNumber}."
+  },
+  "case4": {
+    "title": "Værdi er udenfor modellens rækkevidde (0,9 til 132 mg/mol).",
+    "text": "Testværdien den {date} er for høj, og der må afventes et fald inden modellen kan anvendes. Gentagne høje værdier kan betragtes som tegn på fortsat stofbrug",
+    "calculation": "Modellen er uden for rækkevidde baseret på test nr. {testNumber}."
+  },
+  "case5": {
+    "title": "Værdi er udenfor modellens rækkevidde (0,9 til 132 mg/mol)",
+    "text": "Testværdien er for lav til modellen. Lave værdier i denne størrelse kan tolkes som udskillelse af rester fra tidligere stofbrug, som er ophobet i fedtvævet. BEMÆRK: Der er derfor ikke tegn på nyt indtag",
+    "calculation": "Modellen er uden for rækkevidde baseret på test nr. {testNumber}"
+  },
+  "case6": {
+    "calculation": "Modellen har givet følgende resultat baseret på test nr. {testNumber1} og test nr. {testNumber2}"
+  },
+  "case6_1": {
+    "title": "Tegn på nyt indtag",
+    "text": "Der er evidens for nyt forbrug. Næste beregning vil ske med udgangspunkt i testen fra den {date}"
+  },
+  "case6_2": {
+    "title": "Tegn på nyt indtag.",
+    "text": "Der er evidens for nyt forbrug. Næste beregning vil ske med udgangspunkt i testen fra den {date}"
+  },
+  "case6_3": {
+    "title": "Risiko for falsk forudsigelse af nyt indtag",
+    "text": "BEMÆRK: Der er mulighed for en falsk positiv forudsigelse i op til 14 dage fra testen den {date}, foretag derfor næste test efter den {nextDate}, hvorefter modellen vil være præcis."
+  },
+  "case6_4_1": {
+    "title": "Tegn på nyt indtag",
+    "text": "Der er evidens for nyt forbrug. Næste beregning vil ske med udgangspunkt i testen fra den {date}"
+  },
+  "case6_4_2": {
+    "title": "Ny prøve påkrævet. Modellen kan endnu ikke forudsige et resultat. Der er risiko for falsk forudsigelse af nyt indtag.",
+    "text": "BEMÆRK: Resultatet fra modellen er usikkert. Tag næste prøve tidligst efter 2 dage. Næste testsvar vil blive beregnet på baggrund af testen fra den {date}. Modellen burde herefter være præcis"
+  },
+  "case6_5": {
+    "title": "Intet tegn på nyt indtag af cannabis.",
+    "text": "Der er ikke evidens for nyt cannabis forbrug mellem den {date1} og den {date2}. Næste prøve vil fortsat blive beregnet med udgangspunkt i testen fra den {date1}",
+    "calculation": "Modellen har givet følgende resultat baseret på test nr. {testNumber1} og test nr. {testNumber2}"
+  },
+  "case7": {
+    "title": "Første test",
+    "text": "Testværdien den {date} er første indtastet test. Indtast endnu en test for at se et resultat",
+    "calculation": "Modellen har kun en test på nuværende tidspunkt"
+  },
+  "case8": {
+    "title": "Intet tegn på nyt indtag af cannabis.",
+    "text": "Der er ikke evidens for nyt cannabis forbrug mellem den {date1} og den {date2}. Ved at bruge modellen for sporadisk forbrug vil næste prøve blive beregnet med udgangspunkt i den nyeste test, dette betyder at det er testen fra den {date2}",
+    "calculation": "Modellen har givet følgende resultat baseret på test nr. {testNumber1} og test nr. {testNumber2}"
+  },
+  "case9": {
+    "title": "Tegn på nyt indtag af cannabis.",
+    "text": "Der er evidens for nyt cannabis forbrug mellem den {date1} og den {date2}. Næste prøve at blive beregnet med udgangspunkt i testen fra den {date2}",
+    "calculation": "Modellen har givet følgende resultat baseret på test nr. {testNumber1} og test nr. {testNumber2}"
+  },
+  "case10": {
+    "title": "Tiden imellem de 2 tests er for kort",
+    "text": "Antal timer imellem testene er for lav til modellen. Foretag derfor en ny test",
+    "calculation": "Modellen kan ikke give et resultat baseret på den korte afstand mellem følgende datoer {date1} og {date2}"
+  },
+  "case11": {
+    "title": "Tiden i mellem de 2 tests er for lang",
+    "text": "Antal timer imellem testene er for høj til modellen. Foretag derfor en ny test som ikke er mere end 120 timer efter seneste test",
+    "calculation": "Modellen kan ikke give et resultat baseret på den lange afstand mellem følgende datoer {date1} og {date2}"
   },
   "Navbar": {
     "select_language": "Skift sprog"

@@ -4,6 +4,7 @@ import {notFound} from 'next/navigation';
 import {routing} from '@/i18n/routing';
 import '../globals.css'
 import Navbar from './General/Navbar';
+import { Toaster } from 'sonner';
  
 export default async function LocaleLayout({
   children,
@@ -29,6 +30,7 @@ export default async function LocaleLayout({
             <Navbar />
             {children}
           </div>
+          <Toaster richColors closeButton/>
         </NextIntlClientProvider>
       </body>
     </html>

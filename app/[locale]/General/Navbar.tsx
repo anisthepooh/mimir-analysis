@@ -15,8 +15,6 @@ const Navbar: React.FC<NavbarProps> = ({  }) => {
   const pathname = usePathname()
   const localActive = useLocale();
 
-console.log(pathname)
-
 
   return (
     <nav className="navbar bg-white shadow">

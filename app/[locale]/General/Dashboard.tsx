@@ -27,7 +27,7 @@ const Dashboard: React.FC<DashboardProps> = ({
   return (
     <div className='my-8 w-full px-6'>
       <div className='flex items-center justify-between'>
-        <h1 className='text-4xl font-bold'>{t('overview_tests')}</h1>
+        <h1 className='text-4xl font-semibold'>{t('overview_tests')}</h1>
       </div>
       <div className='flex justify-between items-center mt-16'>
       <div className="inline-flex rounded-lg  text-muted-foreground bg-muted p-1">
