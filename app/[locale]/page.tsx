@@ -3,38 +3,14 @@ import { useState, useCallback, useEffect } from "react";
 import Dashboard from "./General/Dashboard";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import InputContainer from "./General/InputContainer";
-import { answers, convertNgMg,} from '../utils/model'; 
 import { useLocale, useTranslations } from "next-intl";
 import Result from "./General/Result";
-import useStore from "../_store";
 import ChartResult from "./General/ChartResult";
 
-
-
-
 export default function Home() {
-  const [, updateState] = useState();
-  //const forceUpdate = useCallback(() => updateState({}), []);
   const [model, setModel] = useLocalStorage("model", 'cronical');
   const [unit, setUnit] = useState("mg/mol")
-  const localActive = useLocale()
   const t = useTranslations()
-  const { datapoints } = useStore()
-
-  useEffect(() => {
-
-    if (datapoints.length > 0 && model === 'cronical') {
-      //convertNgMg({datapoints, setDatapoints}, "cronical", unit, localActive )
-      //forceUpdate()
-    } 
-    else if (datapoints.length > 0 && model === 'occational'){
-      //convertNgMg({datapoints, setDatapoints}, "occational", unit, localActive)
-      //forceUpdate()
-    }
-    else {
-    }
-  }, [datapoints.length]);
-
 
   return (
     <div className=" container mx-auto">
