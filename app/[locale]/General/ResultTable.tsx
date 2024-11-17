@@ -16,7 +16,6 @@ const ResultTable: React.FC<ResultTableProps> = ({ model }) => {
   return (
     <div className="mt-8 w-full">
       <div className="overflow-x-auto rounded-lg w-full">
-        {t('defaultAnswers.title')}
         <Table>
           <TableHeader className="rounded-b-none">
             <TableRow className="bg-base-200 bg-muted/50 rounded-b-none">

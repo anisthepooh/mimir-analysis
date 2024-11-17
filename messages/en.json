@@ -9,8 +9,8 @@
   "overview_tests": "Overview of test results",
   "user_id": "User ID:",
   "change_user": "Change user",
-  "chronic_use": "Chronic use",
-  "occasional_use": "Occasional use",
+  "chronical_use": "Chronic use",
+  "occational_use": "Occasional use",
   "download_report": "Download report",
   "enter_values": "Enter test values below:",
   "graph_heading": "Graph of results",
@@ -23,6 +23,9 @@
   "powered_by": "Powered by",
   "change_unit": "Change unit",
   "pick_a_date": "Pick a date",
+  "add_to_tests": "Add at least 2 samples to generate a graph",
+  "graph_description" :"Showing the result of the samples in the last {date}",
+  "interpretation_description": "Start adding samples to see the interpretation",
   "FAQ": {
     "haveQuestion": "Do you have a question?",
     "sendEmail": "Then send an email to the address below, and we will post the question and the answer here so everyone can benefit from it."

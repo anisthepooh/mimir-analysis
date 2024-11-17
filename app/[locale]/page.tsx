@@ -7,6 +7,7 @@ import { answers, convertNgMg,} from '../utils/model';
 import { useLocale, useTranslations } from "next-intl";
 import Result from "./General/Result";
 import useStore from "../_store";
+import ChartResult from "./General/ChartResult";
 
 
 
@@ -47,16 +48,12 @@ export default function Home() {
         setUnit={setUnit}
         unit={unit}
       />
-      <div className='grid grid-cols-1 md:grid-cols-2  gap-4 mt-16 p-4 w-full '>
-        <div className= 'border border-slate-200 rounded-lg p-4   bg-white '> 
-          <h2 className='text-2xl font-semibold text-center'>{t('interpretation')} </h2>
-          <div className=''>
-            <Result 
-              model={model}
-              unit={unit}
-            />
-          </div>
-        </div>
+      <div className='grid grid-cols-1 md:grid-cols-2  gap-4 mt-16 w-full '>
+        <Result 
+          model={model}
+          unit={unit}
+        />
+        <ChartResult />
       </div>
     </div>
   );
