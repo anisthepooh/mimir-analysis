@@ -65,7 +65,7 @@ function Input({ setUnit, model, unit }: InputProps) {
     if (datapoints.length === 0 || isBefore(lastDate, date) ) {
       const newDatapoint = {
         id: uuidv4(),
-        value: value,
+        value: Number(value),
         date: date,
         answerTitle: 'Example Title',
         answerBorder: 'normalBorder',
@@ -87,7 +87,7 @@ function Input({ setUnit, model, unit }: InputProps) {
   }
 
   return (
-    <div className="w-full flex justify-center items-center flex-col p-8 rounded mt-16 border border-slate-200 bg-white relative">
+    <div className="w-full flex justify-center items-center flex-col relative">
       {lastDate && new Date(lastDate).toLocaleDateString(localActive, { year: 'numeric', month: 'long', day: 'numeric' }) }
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex justify-center flex-col items-center mt-8 flex-wrap relative">
@@ -151,9 +151,6 @@ function Input({ setUnit, model, unit }: InputProps) {
           </Button>
         </div>
       </form>
-      <div className="flex justify-center w-full">
-        <ResultTable model={model} />
-      </div>
     </div>
   );
 }

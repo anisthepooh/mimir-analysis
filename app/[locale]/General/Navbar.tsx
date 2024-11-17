@@ -21,7 +21,8 @@ const Navbar: React.FC<NavbarProps> = ({  }) => {
       <div className="container mx-auto flex justify-between items-center p-4">
         <Button variant={'ghost'} className='flex flex-col items-start h-auto gap-0'>
           <Link href={`/${localActive}`} className="text-xl font-semibold  transition duration-200">
-            MIMIR
+            MIMIR 
+            <span className='font-medium text-base text-muted-foreground'> v1.0</span>
           </Link>
           <p className="text-xs font-medium text-muted-foreground">{`${t('powered_by')}`}</p>
           <p className="text-sm font-semibold text-muted-foreground">Regionshospitalet Nordjylland</p>

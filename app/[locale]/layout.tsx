@@ -5,6 +5,7 @@ import {routing} from '@/i18n/routing';
 import '../globals.css'
 import Navbar from './General/Navbar';
 import { Toaster } from 'sonner';
+import Footer from '../Components/Footer';
  
 export default async function LocaleLayout({
   children,
@@ -29,6 +30,7 @@ export default async function LocaleLayout({
           <div className='pb-16 bg-slate-50'>
             <Navbar />
             {children}
+            <Footer />
           </div>
           <Toaster richColors closeButton/>
         </NextIntlClientProvider>

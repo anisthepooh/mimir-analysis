@@ -1,6 +1,8 @@
 import { useTranslations } from 'next-intl';
 import React from 'react';
 import Input from './Input';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import ResultTable from './ResultTable';
 
 interface InputContainerProps {
   answers?: any;
@@ -13,16 +15,23 @@ const InputContainer: React.FC<InputContainerProps> = ({ answers, model, setUnit
   const t  = useTranslations();
 
   return (
-    <div className="w-full px-4">
-      <div>
-        <h2 className="text-2xl font-semibold text-center">{t('enter_values')}</h2>
+    <Card>
+      <CardHeader>
+        <CardTitle>
+          {t('enter_values')}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
         <Input 
           setUnit={setUnit}
           model={model}
           unit={unit}
         />
-      </div>
-    </div>
+      </CardContent>
+      <CardFooter>
+        <ResultTable model={model} />
+      </CardFooter>
+    </Card>
   );
 };
 
