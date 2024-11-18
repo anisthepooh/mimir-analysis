@@ -1,6 +1,5 @@
 import {defineConfig} from 'sanity'
 import {deskTool} from 'sanity/desk'
-import faq from './sanity/schemas/faq-schema'
 import schemas from './sanity/schemas'; 
 
 const config = defineConfig({

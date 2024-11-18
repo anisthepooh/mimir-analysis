@@ -1,14 +1,11 @@
 import React from 'react'
 import { AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
+import { Faq } from '@/types/Faq';
 
-type QuestionAnswer = {
-  _id: string;
-  question: string;
-  answer: string;
+interface AccordionComponentProps {
+  faq: Faq;
 }
-type AccordionComponentProps = {
-  faq: QuestionAnswer;
-}
+
 
 const AccordionComponent: React.FC<AccordionComponentProps> = ({ faq }) => {
 

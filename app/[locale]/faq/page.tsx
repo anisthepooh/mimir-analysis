@@ -5,8 +5,13 @@ import React from 'react'
 import { getFaqs } from "@/sanity/sanity-utils";
 import { useTranslations } from 'next-intl';
 import EmailButton from './EmailButton';
+import { Faq } from '@/types/Faq';
 
-const PageContent = ({ faqs }: { faqs: any[] }) => {
+type PageContentProps = {
+  faqs: Faq[]; 
+};
+
+const PageContent = ({ faqs }: PageContentProps) => {
   const t = useTranslations();
   return (
     <>
@@ -17,7 +22,7 @@ const PageContent = ({ faqs }: { faqs: any[] }) => {
       </CardHeader>
       <CardContent>
         <Accordion type="single" collapsible className="max-w-md mx-auto">
-          {faqs?.map((faq: any) => (
+          {faqs?.map((faq) => (
             <AccordionComponent faq={faq} key={faq._id} />
           ))}
         </Accordion>
