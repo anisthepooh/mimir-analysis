@@ -8,13 +8,10 @@ import { DateTimePicker } from '@/components/ui/DateTimePicker';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { type Locale, enUS, da } from 'date-fns/locale';
-import ResultTable from './ResultTable';
-import { answers } from '@/app/utils/model';
 import { convertNgMg2 } from '@/app/utils/model2';
 import { useForm, Controller } from 'react-hook-form';
-import useAnswersStore from '@/app/_store';
 import useStore from '@/app/_store';
-import { isAfter, isBefore } from 'date-fns';
+import { addDays, isAfter, isBefore } from 'date-fns';
 
 interface InputProps {
   setUnit: (unit: string) => void;
@@ -27,8 +24,8 @@ function Input({ setUnit, model, unit }: InputProps) {
   const t = useTranslations()
   const { control, handleSubmit, reset, watch } = useForm({
     defaultValues: {
-      date: new Date(), //undefined as Date | undefined,
-      value: 22 // undefined as number | undefined,
+      date: '', //undefined as Date | undefined,
+      value: '' // undefined as number | undefined,
     },
   });
   const { 
@@ -39,7 +36,8 @@ function Input({ setUnit, model, unit }: InputProps) {
     setText, 
     setBorderColor, 
     setCalculation,
-    setOutside
+    setOutside,
+    toggleModal
   } = useStore();
   const localActive = useLocale();
   const [lastDate, setDateLast] = useState<Date | null>(null);
@@ -57,9 +55,23 @@ function Input({ setUnit, model, unit }: InputProps) {
       setOutside(_answers.outside)
     }
   }, [datapoints]);
+
+  function isMoreThan30DaysAway(date: string, currentDate: Date) {
+    const thirtyDaysFromNow = addDays(currentDate, 30);
+    return isAfter(date, thirtyDaysFromNow);
+  }
+  
+  
+
+  useEffect(() => {
+    
+  },[date])
   
   const onSubmit = () => {
     if (!date || !value) return;
+    if (isMoreThan30DaysAway(date, lastDate)) {
+      return toggleModal(true)
+    }
   
     // @ts-ignore
     if (datapoints.length === 0 || isBefore(lastDate, date) ) {
@@ -109,7 +121,7 @@ function Input({ setUnit, model, unit }: InputProps) {
               )}
             />
 
-            <div className="flex">
+            <div className="flex gap-[1px]">
               <Controller
                 control={control}
                 name="value"
@@ -118,7 +130,7 @@ function Input({ setUnit, model, unit }: InputProps) {
                     {...field}
                     type="number"
                     placeholder={t('test_value')}
-                    className='rounded-r-none border-r-none'
+                    className='rounded-r-none'
                   />
                 )}
               />
@@ -139,7 +151,7 @@ function Input({ setUnit, model, unit }: InputProps) {
                 </SelectContent>
               </Select>
             </div>
-            <Button variant={'default'} type="submit">
+            <Button variant={'default'} type="submit" disabled={!date || !value }>
               <Plus />
               {t('common.add_result')}
             </Button>

@@ -56,7 +56,7 @@ export const convertNgMg2 = (datapoints, setDatapoints, modelType, unit, locale)
 //✅ Works as intended 
 const daysBetween = (dateBase, dateLast, locale) => {
   const t = createTranslator({locale, messages: messages[locale]});
-  console.log(t('case2.title'))
+  console.log( t("case.text"))
   answers.outside = '';
   if (differenceInDays(dateLast, dateBase) >= 31){
       answers.outside = t('defaultAnswers.outside')
@@ -112,6 +112,7 @@ const cronical = (datapoints, unit, locale) => {
 //✅ Works as intended 
 const above800 = (convertSpecimenBase, locale) => {
   const t = createTranslator({locale, messages: messages[locale]});
+  console.log("above800", t('case3.title'))
   if (convertSpecimenBase <= param.concentration[1]){
       answers.title = t("case3.title")
       answers.text = t("case3.text")
@@ -155,6 +156,7 @@ const calcRatio = (convertSpecimeLast, convertSpecimenBase, totalHours, locale) 
 //✅ Works as intended 
 const findA = (roundedRatio, totalHours, convertSpecimenBase, convertSpecimeLast, locale) => {
   const t = createTranslator({locale, messages: messages[locale]});
+  console.log("findA", t('case3.title'))
   let index = 1
   const lastIndex = param.concentration.length - 1
 
@@ -199,12 +201,13 @@ const findA = (roundedRatio, totalHours, convertSpecimenBase, convertSpecimeLast
 //✅ Works as intended 
 const upperLimit = (A, k, t, S2, RMS, ratio, convertSpecimenBase, convertSpecimeLast, locale) => { 
   const result = (A * Math.exp(-k * t)) + (2.57*(Math.sqrt(S2+RMS))); 
-  autoInterpretation(result, ratio, convertSpecimenBase, locale);
+  autoInterpretation(result, ratio, convertSpecimenBase, convertSpecimeLast, locale);
 }
 
 //✅ Works as intended 
 const autoInterpretation = (result, ratio, convertSpecimenBase, convertSpecimeLast, locale) => {
   const t = createTranslator({locale, messages: messages[locale]});
+  console.log("autoInterpretation", t("case5.title"))
 
   if (convertSpecimeLast <= param.concentration[1]){
       answers.title = t("case5.title")
@@ -247,7 +250,7 @@ const autoInterpretation = (result, ratio, convertSpecimenBase, convertSpecimeLa
                   answers.borderColor = borderColors.redBorder
               } else {
                   answers.title = t("case6_4_2.title")
-                  answers.text = t("case6_4_2.text")
+                  answers.text = t("case6_4_2.text", {date: dateLast})
                   answers.borderColor = borderColors.orangeBorder
               }
           }

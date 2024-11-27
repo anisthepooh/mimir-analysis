@@ -5,7 +5,7 @@ import React from 'react'
 
 const ContactCard = ({author}: {author: any}) => {
   return (
-    <Card className="flex gap-4 p-8 w-fit">
+    <Card className="flex gap-4 p-8 w-full">
     <Avatar>
       {author.image ? (
         <AvatarImage src={author.image} alt={`${author.firstname} ${author.lastname}`} />

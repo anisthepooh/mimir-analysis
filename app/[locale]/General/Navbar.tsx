@@ -17,12 +17,14 @@ const Navbar: React.FC<NavbarProps> = ({  }) => {
 
 
   return (
-    <nav className="navbar bg-white shadow">
+    <nav className="navbar bg-white shadow border-b border-b-muted">
       <div className="container mx-auto flex justify-between items-center p-4">
         <Link href={`/${localActive}`} className="text-xl font-semibold  transition duration-200">
           <Button variant={'ghost'} className='flex flex-col items-start h-auto gap-0'>
+            <span>
               MIMIR 
               <span className='font-medium text-base text-muted-foreground'> v1.0</span>
+            </span>
             <p className="text-xs font-medium text-muted-foreground">{`${t('powered_by')}`}</p>
             <p className="text-sm font-semibold text-muted-foreground">Regionshospitalet Nordjylland</p>
           </Button>
@@ -33,7 +35,7 @@ const Navbar: React.FC<NavbarProps> = ({  }) => {
               'font-semibold',
               {"bg-accent text-accent-foreground": pathname === `/${localActive}/Videnscenter`}
             )} >
-            <Link href={`/${localActive}/Videnscenter`} className="">
+            <Link href={`/${localActive}/articles`} className="">
               {t('knowledgecenter')}
             </Link>
             </Button>

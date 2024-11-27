@@ -26,6 +26,9 @@
   "add_to_tests": "Add at least 2 samples to generate a graph",
   "graph_description" :"Showing the result of the samples in the last {date}",
   "interpretation_description": "Start adding samples to see the interpretation",
+  "contributors": "Contributors to the website",
+  "warning_30_days": "Warning! Too large a gap between tests.",
+  "warning_30_days_description": "Between the last entered and the newest sample, there are more than 30 days. This exceeds the model's limits. Ensure that there are no more than 30 days between each test.",
   "FAQ": {
     "haveQuestion": "Do you have a question?",
     "sendEmail": "Then send an email to the address below, and we will post the question and the answer here so everyone can benefit from it."

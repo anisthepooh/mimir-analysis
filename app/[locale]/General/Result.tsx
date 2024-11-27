@@ -20,7 +20,6 @@ const Result: React.FC<ResultProps> = ({
   const { answers, datapoints } = useStore()
   const t  = useTranslations();
   const localActive = useLocale();
-  console.log(answers)
 
   return (
     <Card>
@@ -42,7 +41,7 @@ const Result: React.FC<ResultProps> = ({
           { lt(datapoints.length, 1) ? t('defaultAnswers.calculation') : answers.calculation }
             <br />
             <br />
-            { lt(datapoints.length, 1) ? t('defaultAnswers.outside') : answers.outside }
+            { lt(datapoints.length, 1) ? "" : answers.outside }
           </p>
         </div>
         <CardFooter className='p-0'>

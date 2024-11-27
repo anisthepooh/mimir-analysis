@@ -6,6 +6,8 @@ import InputContainer from "./General/InputContainer";
 import { useLocale, useTranslations } from "next-intl";
 import Result from "./General/Result";
 import ChartResult from "./General/ChartResult";
+import Modal from "../Components/Modal";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const [model, setModel] = useLocalStorage("model", 'cronical');
@@ -31,6 +33,10 @@ export default function Home() {
         />
         <ChartResult />
       </div>
+      <Modal title={t('warning_30_days')} >
+        {t('warning_30_days_description')}
+        {t('defaultAnswers.outside')}
+      </Modal>
     </div>
   );
 }

@@ -23,6 +23,8 @@ interface AnswersState {
   setCalculation: (calculation: string) => void;
   setOutside: (outside: string) => void;
   setDatapoints: (datapoints: DataPoint[]) => void;
+  isOpen: boolean;
+  toggleModal: (isOpen: boolean) => void;
 }
 
 const useStore = create<AnswersState>((set) => ({
@@ -40,6 +42,9 @@ const useStore = create<AnswersState>((set) => ({
   setCalculation: (calculation) => set((state) => ({ answers: { ...state.answers, calculation } })),
   setOutside: (outside) => set((state) => ({ answers: { ...state.answers, outside } })),
   setDatapoints: (datapoints) => set(() => ({ datapoints })),
+  isOpen: false,
+  toggleModal: () => set((state) => ({ isOpen: !state.isOpen })),
 }));
+
 
 export default useStore;

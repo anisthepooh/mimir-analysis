@@ -25,6 +25,9 @@
   "add_to_tests": "Tilføj mindst 2 prøver for at generere en graf",
   "graph_description" :"Viser resultatet af prøverne fra de sidste {date}",
   "interpretation_description": "Begynd at tilføje prøver for at se fortolkningen",
+  "contributors": "Bidragydere til hjemmesiden",
+  "warning_30_days": "Advarsel! For stor afstand mellem tests.",
+  "warning_30_days_description": "Mellem den sidst indtastede og den nyeste prøve er der mere end 30 dage. Dette går ud over modellens rammer. Sørg for, at der ikke er mere end 30 dage mellem hver test.",
   "FAQ": {
     "haveQuestion": "Har du et spørgsmål?",
     "sendEmail": "Så send en mail til understående mail, og vi vil lægge spørgsmålet samt svar op her, så alle kan få glæde af det."
