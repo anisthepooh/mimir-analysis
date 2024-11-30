@@ -1,6 +1,6 @@
 'use client';
 import { useLocale, useTranslations } from 'next-intl';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { ChangeEvent, useTransition } from 'react';
 import {
   Select,
@@ -15,15 +15,20 @@ import {
 export default function LocalSwitcher() {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
+  const pathname = usePathname()
   const localActive = useLocale();
   const t = useTranslations();
 
   const onSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const nextLocale = e
+
+    const normalizedPathname = pathname.replace(`/${localActive}`, '');
+
     startTransition(() => {
-      router.replace(`/${nextLocale}`);
+      router.replace(`/${nextLocale}${normalizedPathname}`);
     });
   };
+  
   return (
     <label className=''>
       <p className='sr-only'>{t('Navbar.select_language')}</p>
