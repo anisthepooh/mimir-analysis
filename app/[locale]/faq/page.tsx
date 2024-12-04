@@ -1,3 +1,4 @@
+'use client'
 import { Accordion } from '@/components/ui/accordion'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import AccordionComponent  from './AccordionComponent'

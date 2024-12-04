@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+'use client'
 import { Author } from '@/types/Author';
 import React from 'react';
 import ContactCard from './ContactCard';
