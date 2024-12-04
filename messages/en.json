@@ -12,7 +12,7 @@
   "chronical_use": "Chronic use",
   "occational_use": "Occasional use",
   "download_report": "Download report",
-  "enter_values": "Enter test values below:",
+  "enter_values": "Enter test values below",
   "graph_heading": "Graph of results",
   "test_nb": "Test no.",
   "tested": "Tested at",
@@ -29,6 +29,14 @@
   "contributors": "Contributors to the website",
   "warning_30_days": "Warning! Too large a gap between tests.",
   "warning_30_days_description": "Between the last entered and the newest sample, there are more than 30 days. This exceeds the model's limits. Ensure that there are no more than 30 days between each test.",
+  "chosen_model": "Chosen model: ",
+  "less_than_two_days_warning": "<strong>Warning:</strong> The date is less than two days away!",
+  "violates_the_model": "This violates the model's rules.",
+  "less_than_two_days_warning_occational": "<strong>Warning:</strong> The time between the two tests can exceed 120 hours when using the occasional model.",
+  "landing": {
+    "title": "Get precise interpretations on Cannabis tests with ease",
+    "subtitle": "Easy to use, clear interpretations, readable graph, printable, and much more..."
+  },
   "FAQ": {
     "haveQuestion": "Do you have a question?",
     "sendEmail": "Then send an email to the address below, and we will post the question and the answer here so everyone can benefit from it."

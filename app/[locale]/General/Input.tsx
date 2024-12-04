@@ -11,7 +11,7 @@ import { type Locale, enUS, da } from 'date-fns/locale';
 import { convertNgMg2 } from '@/app/utils/model2';
 import { useForm, Controller } from 'react-hook-form';
 import useStore from '@/app/_store';
-import { addDays, isAfter, isBefore } from 'date-fns';
+import { addDays, differenceInDays, differenceInHours, isAfter, isBefore } from 'date-fns';
 
 interface InputProps {
   setUnit: (unit: string) => void;
@@ -37,7 +37,9 @@ function Input({ setUnit, model, unit }: InputProps) {
     setBorderColor, 
     setCalculation,
     setOutside,
-    toggleModal
+    toggleModal,
+    setWarning,
+    setOpenWarning
   } = useStore();
   const localActive = useLocale();
   const [lastDate, setDateLast] = useState<Date | null>(null);
@@ -56,19 +58,52 @@ function Input({ setUnit, model, unit }: InputProps) {
     }
   }, [datapoints]);
 
-  function isMoreThan30DaysAway(date: string, currentDate: Date) {
+  function isMoreThan30DaysAway(date: Date | string, currentDate: Date | null) {
+    if (!currentDate) return
+    //@ts-ignore
     const thirtyDaysFromNow = addDays(currentDate, 30);
-    return isAfter(date, thirtyDaysFromNow);
+    return isAfter(date, thirtyDaysFromNow)
   }
-  
+
   
 
   useEffect(() => {
+    if (!lastDate || isBefore(date, lastDate)) return
+    if (model === "cronical") {
+      if (differenceInHours(date, lastDate) < 48 ) {
+        setOpenWarning(true)
+        setWarning(
+          <>
+            {t.rich('less_than_two_days_warning', {
+              strong: (children) => <strong>{children}</strong>,
+            })}
+            <br />
+            {t('violates_the_model')}
+          </>
+        );
+      } else {
+        setOpenWarning(false)
+      }
+    } else if (model === "occational" && lastDate) {
+        if (differenceInHours(date, lastDate) > 120 ) {
+          setOpenWarning(true)
+          setWarning(
+            <>
+            {t.rich('less_than_two_days_warning_occational', {
+              strong: (children) => <strong>{children}</strong>,
+            })}
+          </>
+          )
+        } else {
+          setOpenWarning(false)
+        }
+    }
     
   },[date])
   
   const onSubmit = () => {
     if (!date || !value) return;
+
     if (isMoreThan30DaysAway(date, lastDate)) {
       return toggleModal(true)
     }
@@ -82,7 +117,9 @@ function Input({ setUnit, model, unit }: InputProps) {
         answerTitle: 'Example Title',
         answerBorder: 'normalBorder',
       };
+      // @ts-ignore
       setDatapoints([...datapoints, newDatapoint])
+      setOpenWarning(false)
       reset()
       const formattedDate = model === "cronical" ?  new Date(date).toLocaleDateString(localActive, { year: 'numeric', month: 'long', day: 'numeric' }) :  new Date(date).toLocaleDateString(localActive, { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false })
       toast.success(t('toast.result_added'), {
@@ -93,16 +130,16 @@ function Input({ setUnit, model, unit }: InputProps) {
     }
   };
   
-
   function buttonHandlerDelete() {
     window.location.reload();
   }
 
+  
+
   return (
     <div className="w-full flex justify-center items-center flex-col relative">
-      {lastDate && new Date(lastDate).toLocaleDateString(localActive, { year: 'numeric', month: 'long', day: 'numeric' }) }
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex justify-center flex-col items-center mt-8 flex-wrap relative">
+        <div className="flex justify-center flex-col items-center mt-4 flex-wrap relative">
           <div className="flex justify-between text-center items-center rounded-lg p-2 gap-4 border border-slate-200">
             <p className="w-8 h-8 bg-muted rounded-lg text-center flex justify-center items-center" id="testnumber">
               {datapoints.length + 1}
@@ -111,6 +148,7 @@ function Input({ setUnit, model, unit }: InputProps) {
               control={control}
               name="date"
               render={({ field }) => (
+                // @ts-ignore
                 <DateTimePicker 
                   granularity={model === 'occational' ? 'minute' : 'day'} 
                   {...field}
@@ -151,7 +189,7 @@ function Input({ setUnit, model, unit }: InputProps) {
                 </SelectContent>
               </Select>
             </div>
-            <Button variant={'default'} type="submit" disabled={!date || !value }>
+            <Button variant={'default'} type="submit" disabled={(!date || !value) }>
               <Plus />
               {t('common.add_result')}
             </Button>

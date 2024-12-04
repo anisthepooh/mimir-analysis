@@ -56,7 +56,6 @@ export const convertNgMg2 = (datapoints, setDatapoints, modelType, unit, locale)
 //✅ Works as intended 
 const daysBetween = (dateBase, dateLast, locale) => {
   const t = createTranslator({locale, messages: messages[locale]});
-  console.log( t("case.text"))
   answers.outside = '';
   if (differenceInDays(dateLast, dateBase) >= 31){
       answers.outside = t('defaultAnswers.outside')
@@ -112,7 +111,6 @@ const cronical = (datapoints, unit, locale) => {
 //✅ Works as intended 
 const above800 = (convertSpecimenBase, locale) => {
   const t = createTranslator({locale, messages: messages[locale]});
-  console.log("above800", t('case3.title'))
   if (convertSpecimenBase <= param.concentration[1]){
       answers.title = t("case3.title")
       answers.text = t("case3.text")
@@ -156,7 +154,6 @@ const calcRatio = (convertSpecimeLast, convertSpecimenBase, totalHours, locale) 
 //✅ Works as intended 
 const findA = (roundedRatio, totalHours, convertSpecimenBase, convertSpecimeLast, locale) => {
   const t = createTranslator({locale, messages: messages[locale]});
-  console.log("findA", t('case3.title'))
   let index = 1
   const lastIndex = param.concentration.length - 1
 
@@ -207,7 +204,6 @@ const upperLimit = (A, k, t, S2, RMS, ratio, convertSpecimenBase, convertSpecime
 //✅ Works as intended 
 const autoInterpretation = (result, ratio, convertSpecimenBase, convertSpecimeLast, locale) => {
   const t = createTranslator({locale, messages: messages[locale]});
-  console.log("autoInterpretation", t("case5.title"))
 
   if (convertSpecimeLast <= param.concentration[1]){
       answers.title = t("case5.title")
@@ -259,7 +255,7 @@ const autoInterpretation = (result, ratio, convertSpecimenBase, convertSpecimeLa
       else if (result > ratio) {
           answers.title = t("case6_5.title")
           answers.text = t("case6_5.text", {date1: dateBase, date2: dateLast})
-          answers.calculation = t("case6_5.calculation ", {testNumber1: specimenBase + 1, testNumber2: specimenLast +1})
+          answers.calculation = t("case6_5.calculation", {testNumber1: specimenBase + 1, testNumber2: specimenLast +1})
           answers.borderColor = borderColors.greenBorder
       } 
       else if (result = null){
@@ -288,6 +284,8 @@ const calcRatioOCC = (datapoints, unit, locale ) => {
 }
 
 const calculateOCC = (totalHours, roundedRatio, locale) => {
+  const t = createTranslator({locale, messages: messages[locale]});
+
   const lastIndex = param.time.length - 1
 
   if (totalHours <= param.time[1]) {

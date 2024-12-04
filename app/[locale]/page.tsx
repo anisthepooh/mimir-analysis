@@ -1,42 +1,57 @@
 'use client'
-import { useState, useCallback, useEffect } from "react";
-import Dashboard from "./General/Dashboard";
-import { useLocalStorage } from "@uidotdev/usehooks";
-import InputContainer from "./General/InputContainer";
-import { useLocale, useTranslations } from "next-intl";
-import Result from "./General/Result";
-import ChartResult from "./General/ChartResult";
-import Modal from "../Components/Modal";
-import { Button } from "@/components/ui/button";
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button'
+import { Bookmark, TestTube, TestTubeDiagonal } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
+import Link from 'next/link'
+import React from 'react'
+import LogoGrid from './General/LogoGrid';
+import Features from './General/Features';
+import RTLSection from './General/RTLSection';
 
-export default function Home() {
-  const [model, setModel] = useLocalStorage("model", 'cronical');
-  const [unit, setUnit] = useState("mg/mol")
+const page = () => {
   const t = useTranslations()
+  const locale = useLocale()
 
   return (
-    <div className=" container mx-auto">
-      <Dashboard
-        model={model}
-        setModel={setModel}
-        //setDatapoints={setDatapoints}
-      />
-      <InputContainer 
-        model={model}
-        setUnit={setUnit}
-        unit={unit}
-      />
-      <div className='grid grid-cols-1 md:grid-cols-2  gap-4 mt-16 w-full '>
-        <Result 
-          model={model}
-          unit={unit}
-        />
-        <ChartResult />
+    <div className='w-full '>
+      <div className=" py-12 md:py-24 lg:py-32 bg-gradient-to-b from-sky-200 to-slate-50">
+        <div className="container px-4 md:px-6 mx-auto ">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center">
+            <div className="space-y-2 mb-4">
+              <span className='flex gap-2 justify-center items-center font-bold text-sky-800 text-xl mb-4 '>
+                <TestTubeDiagonal size={16} />
+              Mimir
+              <Badge className='text-[10px] h-4 bg-black hover:bg-black text-sky-200'> v.1.0</Badge>
+              </span>
+              <h1 className="text-4xl font-bold tracking-tighter ">
+                {t('landing.title')}
+              </h1>
+              <p className="mx-auto max-w-[700px] text-slate-500">
+                {t('landing.subtitle')}
+              </p>
+            </div>
+            <div className="flex items-end gap-4 ">
+              <Button asChild>
+                <Link href={`${locale}/dashboard`}>
+                  <TestTube />
+                  Get started
+                </Link>
+              </Button>
+              <Button variant={'outline'} >
+                <Bookmark />
+                Save to Bookmark
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
-      <Modal title={t('warning_30_days')} >
-        {t('warning_30_days_description')}
-        {t('defaultAnswers.outside')}
-      </Modal>
+      <LogoGrid />
+      <Features />
+      <RTLSection ltr />
+      <RTLSection />
     </div>
-  );
+  )
 }
+
+export default page

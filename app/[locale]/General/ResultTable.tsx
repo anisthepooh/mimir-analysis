@@ -6,11 +6,11 @@ import React, { useEffect, useRef } from 'react';
 
 interface ResultTableProps {
   model: string;
+  unit: string;
 }
 
-const ResultTable: React.FC<ResultTableProps> = ({ model }) => {
+const ResultTable: React.FC<ResultTableProps> = ({ model, unit }) => {
   const { datapoints, answers } = useStore();
-  const t = useTranslations();
   const locale = useLocale();
 
   return (
@@ -50,7 +50,7 @@ const ResultTable: React.FC<ResultTableProps> = ({ model }) => {
                     new Date(datapoint.date).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false })
                   }
                 </TableCell>
-                <TableCell>{datapoint.value}</TableCell>
+                <TableCell>{datapoint.value} {unit}</TableCell>
               </TableRow>
             ))}
           </TableBody>

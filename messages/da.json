@@ -11,7 +11,7 @@
   "chronical_use": "Kronisk forbrug",
   "occational_use": "Sporalisk forbrug",
   "download_report": "Download rapport",
-  "enter_values": "Indtast test værdier her: ",
+  "enter_values": "Indtast test værdier",
   "graph_heading": "Graf over resultater",
   "test_nb": "Test nr.",
   "tested": "Testet den",
@@ -28,6 +28,14 @@
   "contributors": "Bidragydere til hjemmesiden",
   "warning_30_days": "Advarsel! For stor afstand mellem tests.",
   "warning_30_days_description": "Mellem den sidst indtastede og den nyeste prøve er der mere end 30 dage. Dette går ud over modellens rammer. Sørg for, at der ikke er mere end 30 dage mellem hver test.",
+  "chosen_model": "Valgte model: ",
+  "less_than_two_days_warning": "<strong>Advarsel:</strong> Datoen er mindre end to dage væk!",
+  "violates_the_model": "Dette er imod modellens regler.",
+  "less_than_two_days_warning_occational": "<strong>Warning:</strong> Tiden mellem de to tests kan overskride 120 timer, når den lejlighedsvise model bruges.",
+  "landing": {
+    "title": "Få præcise fortolkninger af cannabisprøver nemt og forståligt",
+    "subtitle": "Let at bruge, klare fortolkninger, læsbar graf, udskrivbar og meget mere..."
+  },
   "FAQ": {
     "haveQuestion": "Har du et spørgsmål?",
     "sendEmail": "Så send en mail til understående mail, og vi vil lægge spørgsmålet samt svar op her, så alle kan få glæde af det."

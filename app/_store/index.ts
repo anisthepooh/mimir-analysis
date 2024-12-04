@@ -25,6 +25,10 @@ interface AnswersState {
   setDatapoints: (datapoints: DataPoint[]) => void;
   isOpen: boolean;
   toggleModal: (isOpen: boolean) => void;
+  warning: React.ReactNode;
+  setWarning: (warning:  React.ReactNode) => void;
+  isWarningOpen: boolean;
+  setOpenWarning: (isWarningOpen: boolean) => void;
 }
 
 const useStore = create<AnswersState>((set) => ({
@@ -44,6 +48,12 @@ const useStore = create<AnswersState>((set) => ({
   setDatapoints: (datapoints) => set(() => ({ datapoints })),
   isOpen: false,
   toggleModal: () => set((state) => ({ isOpen: !state.isOpen })),
+  warning: null as React.ReactNode | null,
+  isWarningOpen: false,
+  setOpenWarning: (value: boolean) =>
+    set(() => ({ isWarningOpen: value })),
+  setWarning: (value: React.ReactNode) =>
+    set(() => ({ warning: value })),
 }));
 
 

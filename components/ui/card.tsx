@@ -1,21 +1,29 @@
 import * as React from "react"
-
+import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from "@/lib/utils"
 
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div
+  //@ts-ignore
+  <motion.div
     ref={ref}
+    layout
+    initial={{ opacity: 0, scale: 0.95 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{
+      opacity: { duration: 0.5, ease: "easeOut" },
+    }}
     className={cn(
       "rounded-xl border bg-card text-card-foreground shadow",
       className
     )}
     {...props}
   />
-))
-Card.displayName = "Card"
+));
+
+Card.displayName = "Card";
 
 const CardHeader = React.forwardRef<
   HTMLDivElement,

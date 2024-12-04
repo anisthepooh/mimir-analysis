@@ -29,7 +29,7 @@ const Result: React.FC<ResultProps> = ({
       </CardHeader>
       <CardContent>
         <div className={` p-4 mt-8 rounded-lg ${answers.borderColor}`}>
-          <h3 className="font-semibold leading-none tracking-tight" defaultValue="Resultat titel">
+          <h3 className="font-semibold tracking-tight" defaultValue="Resultat titel">
             { lt(datapoints.length, 1) ? t('defaultAnswers.title') : answers.title }
           </h3>
           <p className="mt-4 text-sm text-muted-foreground" defaultValue="Tekst forklaring">
