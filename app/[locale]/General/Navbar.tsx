@@ -44,10 +44,12 @@ const Navbar = ({  }) => {
     <nav className="navbar bg-white shadow border-b border-b-muted">
       <div className="container mx-auto flex justify-between items-center p-4">
           <Link href={`/${localActive}`} className="text-xl font-semibold  transition duration-200">
-          <span className='flex gap-2 items-center font-bold text-sky-800 text-base '>
-            <TestTubeDiagonal size={16} />
-            Mimir
-            <Badge className='text-[10px] h-4 bg-black hover:bg-black text-sky-200'> v.1.0</Badge>
+          <span className='flex gap-1 items-baseline font-bold text-sky-800 text-base '>
+            <TestTubeDiagonal size={12} />
+            <span>
+              Mimir
+              <span className='text-[10px] text-sky-600'> v.1.0</span>
+            </span>
           </span>
           <p className="text-xs font-medium text-muted-foreground">{`${t('powered_by')}`}</p>
           <p className="text-sm font-semibold text-muted-foreground">Regionshospitalet Nordjylland</p>

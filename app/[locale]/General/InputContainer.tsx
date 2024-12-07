@@ -25,7 +25,7 @@ const InputContainer: React.FC<InputContainerProps> = ({ answers, model, setUnit
             <span className='font-semibold normal-case'>
               {t('chosen_model')}
             </span>
-            {model}
+            {t(model)}
           </p>
         </CardTitle>
       </CardHeader>
