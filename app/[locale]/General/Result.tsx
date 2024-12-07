@@ -2,10 +2,9 @@ import { Tag } from 'lucide-react';
 import React from 'react';
 import { Badge } from '@/components/ui/badge'; 
 import { useLocale, useTranslations } from 'next-intl';
-import useAnswersStore from '@/app/_store';
-import useStore from '@/app/_store';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { gt, lt, lte } from 'lodash';
+import { useAnswersStore, useDatapointsStore } from '@/app/_store';
 
 
 interface ResultProps {
@@ -17,7 +16,8 @@ const Result: React.FC<ResultProps> = ({
   model,
   unit,
 }) => {
-  const { answers, datapoints } = useStore()
+  const { datapoints } = useDatapointsStore()
+  const { answers } = useAnswersStore()
   const t  = useTranslations();
   const localActive = useLocale();
 

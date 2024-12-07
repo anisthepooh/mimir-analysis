@@ -1,4 +1,4 @@
-import useStore from '@/app/_store';
+import { useAnswersStore, useDatapointsStore } from '@/app/_store';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Calendar, Hash, TestTube } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
@@ -10,7 +10,8 @@ interface ResultTableProps {
 }
 
 const ResultTable: React.FC<ResultTableProps> = ({ model, unit }) => {
-  const { datapoints, answers } = useStore();
+  const { datapoints } = useDatapointsStore()
+  const { answers } = useAnswersStore()
   const locale = useLocale();
 
   return (

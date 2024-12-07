@@ -18,7 +18,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 import { format, formatDistance } from "date-fns"
-import useStore from "@/app/_store"
+import { useDatapointsStore } from "@/app/_store"
 import { useEffect, useState } from "react"
 import { lte, pick, uniq } from "lodash"
 import { cn } from "@/lib/utils"
@@ -43,7 +43,7 @@ const chartConfig = {
 
 
 const ChartResult = () => {
-  const {datapoints} = useStore()
+  const {datapoints} = useDatapointsStore()
   const [data, setData] = useState<TransformedData[]>([]) 
   const t = useTranslations()
 

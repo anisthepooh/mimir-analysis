@@ -1,9 +1,9 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { TriangleAlert } from 'lucide-react';
-import useStore from '../_store';
+import { useUtilitiesStore } from '../_store';
 
 const WarningMessage = () => {
-  const {warning, isWarningOpen} = useStore()
+  const {warning, isWarningOpen} = useUtilitiesStore()
   return (
       <AnimatePresence>
         {isWarningOpen && (

@@ -7,6 +7,7 @@ import { useLocale, useTranslations } from "next-intl";
 import Result from "../General/Result";
 import ChartResult from "../General/ChartResult";
 import Modal from "../../Components/Modal";
+import ModelComponent from "@/app/utils/model2";
 
 export default function Home() {
   const [model, setModel] = useLocalStorage("model", 'cronical');
@@ -14,28 +15,31 @@ export default function Home() {
   const t = useTranslations()
 
   return (
-    <div className=" container mx-auto">
-      <Dashboard
-        model={model}
-        setModel={setModel}
-        //setDatapoints={setDatapoints}
-      />
-      <InputContainer 
-        model={model}
-        setUnit={setUnit}
-        unit={unit}
-      />
-      <div className='grid grid-cols-1 md:grid-cols-2  gap-4 mt-16 w-full '>
-        <Result 
+    <ModelComponent>
+
+      <div className=" container mx-auto">
+        <Dashboard
           model={model}
+          setModel={setModel}
+          //setDatapoints={setDatapoints}
+        />
+        <InputContainer 
+          model={model}
+          setUnit={setUnit}
           unit={unit}
         />
-        <ChartResult />
+        <div className='grid grid-cols-1 md:grid-cols-2  gap-4 mt-16 w-full '>
+          <Result 
+            model={model}
+            unit={unit}
+          />
+          <ChartResult />
+        </div>
+        <Modal title={t('warning_30_days')} >
+          {t('warning_30_days_description')}
+          {t('defaultAnswers.outside')}
+        </Modal>
       </div>
-      <Modal title={t('warning_30_days')} >
-        {t('warning_30_days_description')}
-        {t('defaultAnswers.outside')}
-      </Modal>
-    </div>
+    </ModelComponent>
   );
 }

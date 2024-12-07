@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Info, Plus, Trash } from 'lucide-react';
@@ -8,10 +9,11 @@ import { DateTimePicker } from '@/components/ui/DateTimePicker';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { type Locale, enUS, da } from 'date-fns/locale';
-import { convertNgMg2 } from '@/app/utils/model2';
+// import { convertNgMg2 } from '@/app/utils/model2';
 import { useForm, Controller } from 'react-hook-form';
-import useStore from '@/app/_store';
+import { useAnswersStore, useDatapointsStore, useUtilitiesStore } from '@/app/_store';
 import { addDays, differenceInDays, differenceInHours, isAfter, isBefore } from 'date-fns';
+import { useModel } from '@/app/utils/model2';
 
 interface InputProps {
   setUnit: (unit: string) => void;
@@ -21,6 +23,7 @@ interface InputProps {
 
 
 function Input({ setUnit, model, unit }: InputProps) {
+  const { convertNgMg2 } = useModel();
   const t = useTranslations()
   const { control, handleSubmit, reset, watch } = useForm({
     defaultValues: {
@@ -28,19 +31,12 @@ function Input({ setUnit, model, unit }: InputProps) {
       value: '' // undefined as number | undefined,
     },
   });
-  const { 
-    datapoints, 
-    setDatapoints,
-    answers, 
-    setTitle, 
-    setText, 
-    setBorderColor, 
-    setCalculation,
-    setOutside,
+  const {datapoints, setDatapoints} = useDatapointsStore()
+  const {
     toggleModal,
     setWarning,
     setOpenWarning
-  } = useStore();
+  } = useUtilitiesStore()
   const localActive = useLocale();
   const [lastDate, setDateLast] = useState<Date | null>(null);
   const date = watch('date')
@@ -49,12 +45,8 @@ function Input({ setUnit, model, unit }: InputProps) {
   useEffect(() => {
     if (datapoints.length > 0) {
       setDateLast(new Date(datapoints[datapoints.length - 1].date))
-      const _answers = convertNgMg2(datapoints, setDatapoints, model, unit, localActive)
-      setTitle(_answers.title)
-      setText(_answers.text)
-      setBorderColor(_answers.borderColor)
-      setCalculation(_answers.calculation)
-      setOutside(_answers.outside)
+      //@ts-ignore
+      convertNgMg2( model, unit, localActive)
     }
   }, [datapoints]);
 

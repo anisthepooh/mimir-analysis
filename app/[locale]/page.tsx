@@ -1,5 +1,4 @@
 'use client'
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button'
 import { Bookmark, TestTube, TestTubeDiagonal } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';

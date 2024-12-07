@@ -9,7 +9,7 @@ import {
   DialogTrigger 
 } from '@/components/ui/dialog';
 import React, { ReactNode } from 'react';
-import useStore from '../_store';
+import { useUtilitiesStore } from '../_store';
 import { Button } from '@/components/ui/button';
 import { TriangleAlert } from 'lucide-react';
 
@@ -21,7 +21,7 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ triggerTitle, title, children }) => {
-  const { isOpen, toggleModal } = useStore();
+  const { isOpen, toggleModal } = useUtilitiesStore()
 
   return (
     <Dialog open={isOpen} onOpenChange={toggleModal}>
