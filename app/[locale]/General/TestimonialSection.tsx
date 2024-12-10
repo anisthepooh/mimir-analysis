@@ -3,7 +3,8 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { AvatarImage } from '@radix-ui/react-avatar'
 import React from 'react'
 
-const TestimonialSection = () => {
+const TestimonialSection = (hidden) => {
+  if (hidden) return null
 
   const testimonials = [
     {

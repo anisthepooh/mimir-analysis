@@ -34,7 +34,24 @@
   "less_than_two_days_warning_occational": "<strong>Warning:</strong> Tiden mellem de to tests kan overskride 120 timer, når den lejlighedsvise model bruges.",
   "landing": {
     "title": "Få præcise fortolkninger af cannabisprøver nemt og forståligt",
-    "subtitle": "Let at bruge, klare fortolkninger, læsbar graf, udskrivbar og meget mere..."
+    "subtitle": "Let at bruge, klare fortolkninger, læsbar graf, udskrivbar og meget mere...",
+    "get_started": "Start med at indtaste",
+    "download_as_app": "Hent som app",
+    "used_by": "Brugt af:",
+    "point_graph": "Graf der visualisere udvilkingen i indtatede tests",
+    "point_print": "Genvej til at printe test fortolkningerne",
+    "point_models": "Vælg blandt to modeller",
+    "point_interpretation": "Forstålige fortolkninger der guider dig til næste skridt",
+    "point_input": "Guidede input felter, der minimere fejl",
+    "point_table": "Overskulige tabel over indtastede tests"
+  },
+  "feature": {
+    "easy_to_use": "Nemt at bruge",
+    "validated": "Videnskabeligt udviklet",
+    "free_to_use": "Gratis at bruge",
+    "easy_to_use_description": "Brugervenlighed, gennemsigtighed og letforståelige fortolkninger har været hjørnestenen i dette system.",
+    "validated_description": "Systemet er udviklet ud fra en videnskabeligt testet og valideret matematisk model.",
+    "free_to_use_description": "Systemet er udviklet som et open-source-projekt, så det kræver ingen betalinger at bruge."
   },
   "FAQ": {
     "haveQuestion": "Har du et spørgsmål?",

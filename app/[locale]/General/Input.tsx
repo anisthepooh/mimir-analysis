@@ -32,6 +32,7 @@ function Input({ setUnit, model, unit }: InputProps) {
     },
   });
   const {datapoints, setDatapoints} = useDatapointsStore()
+  const {answers} = useAnswersStore()
   const {
     toggleModal,
     setWarning,
@@ -96,7 +97,7 @@ function Input({ setUnit, model, unit }: InputProps) {
   const onSubmit = () => {
     if (!date || !value) return;
 
-    if (isMoreThan30DaysAway(date, lastDate)) {
+    if (differenceInDays(answers.specimenLastDate, answers.specimenBaseDate) >= 31){
       return toggleModal(true)
     }
   

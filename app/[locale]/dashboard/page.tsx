@@ -8,6 +8,7 @@ import Result from "../General/Result";
 import ChartResult from "../General/ChartResult";
 import Modal from "../../Components/Modal";
 import ModelComponent from "@/app/utils/model2";
+import GradientWrapper from "@/app/Components/GradientWrapper";
 
 export default function Home() {
   const [model, setModel] = useLocalStorage("model", 'cronical');
@@ -16,7 +17,7 @@ export default function Home() {
 
   return (
     <ModelComponent>
-
+      <GradientWrapper>
       <div className=" container mx-auto">
         <Dashboard
           model={model}
@@ -40,6 +41,7 @@ export default function Home() {
           {t('defaultAnswers.outside')}
         </Modal>
       </div>
+      </GradientWrapper>
     </ModelComponent>
   );
 }

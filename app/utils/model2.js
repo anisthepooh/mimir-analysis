@@ -5,9 +5,7 @@ import { createTranslator } from "next-intl"
 import React, { createContext, useContext, ReactNode } from 'react';
 import { useAnswersStore, useDatapointsStore } from "../_store";
 
-type Props = {
-  children: ReactNode
-}
+
 
 // Create the context
 const ModelContext = createContext(null);
@@ -21,14 +19,16 @@ export const useModel = () => {
     return context;
 };
 
-const ModelComponent: React = ({children}) => {
+const ModelComponent = ({children}) => {
 
   const {  
     setTitle, 
     setText, 
     setBorderColor, 
     setCalculation,
-    setOutside 
+    setOutside,
+    setSpecimenBaseDate,
+    setSpecimenLastDate 
   } = useAnswersStore()
 
   const { datapoints, setDatapoints } = useDatapointsStore() 
@@ -57,7 +57,9 @@ const ModelComponent: React = ({children}) => {
     specimenLast = datapoints.length - 1
 
     dateBase = new Date(datapoints[specimenBase]?.date)?.toLocaleDateString('dk-DK', {year: 'numeric', month: 'long', day: 'numeric'})
+    setSpecimenBaseDate(dateBase)
     dateLast = new Date(datapoints[specimenLast]?.date)?.toLocaleDateString('dk-DK', {year: 'numeric', month: 'long', day: 'numeric'})
+    setSpecimenLastDate(dateLast)
     daysBetween(dateBase, dateLast, locale)
     setUnit(specimenBase, unit, datapoints, locale)
     setModel(modelType, unit, locale)

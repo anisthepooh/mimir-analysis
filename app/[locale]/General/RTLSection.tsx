@@ -5,9 +5,11 @@ import React from 'react'
 
 type Props = {
   ltr?: boolean;
+  hidden: boolean;
 }
 
-const RTLSection = ({ltr}: Props) => {
+const RTLSection = ({ltr, hidden}: Props) => {
+  if (hidden) return null
   return (
     <div id="cta" className="pb-0 py-16 max-w-screen-xl mx-auto px-4 md:px-8">
       <div className="">

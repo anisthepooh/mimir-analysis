@@ -6,6 +6,13 @@ import '../globals.css'
 import Navbar from './General/Navbar';
 import { Toaster } from 'sonner';
 import Footer from '../Components/Footer';
+import { Inter } from 'next/font/google';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+});
+
  
 export default async function LocaleLayout({
   children,
@@ -24,10 +31,10 @@ export default async function LocaleLayout({
   const messages = await getMessages();
  
   return (
-    <html lang={locale}>
-      <body>
+    <html lang={locale} className={inter.variable}>
+      <body className='font-sans'>
         <NextIntlClientProvider messages={messages}>
-          <div className='pb-16 bg-slate-50'>
+          <div className='pb-16'>
             <Navbar />
             {children}
             <Footer />

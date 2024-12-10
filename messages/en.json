@@ -35,7 +35,19 @@
   "less_than_two_days_warning_occational": "<strong>Warning:</strong> The time between the two tests can exceed 120 hours when using the occasional model.",
   "landing": {
     "title": "Get precise interpretations on Cannabis tests with ease",
-    "subtitle": "Easy to use, clear interpretations, readable graph, printable, and much more..."
+    "subtitle": "Easy to use, clear interpretations, readable graph, printable, and much more...",
+    "get_started": "Get started",
+    "download_as_app": "Download as app",
+    "used_by": "Used by:"
+  },
+  "feature": {
+    "easy_to_use": "Easy to use",
+    "validated": "Scientifically validated",
+    "free_to_use": "Free to use",
+    "easy_to_use_description": "User-friendliness, transparency, and easily understandable interpretations have been the cornerstone of this system.",
+    "validated_description": "The system is developed based on a scientifically tested and validated mathematical model.",
+    "free_to_use_description": "The system is developed as an open-source project, so no payments are required to use it."
+
   },
   "FAQ": {
     "haveQuestion": "Do you have a question?",

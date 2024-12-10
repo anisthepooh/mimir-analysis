@@ -6,7 +6,11 @@ import layers from '../../../public/logos/layers.svg'
 import adobe from '../../../public/logos/adobe.svg'
 import { useTranslations } from 'next-intl'
 
-const LogoGrid = () => {
+type Props = {
+  hidden?: boolean;
+}
+const LogoGrid = ({hidden}: Props) => {
+  if (hidden) return null
   const t = useTranslations()
 
   const logos = [
@@ -30,8 +34,8 @@ const LogoGrid = () => {
 
   return (
     <div>
-      <div className="mb-16">
-        <h2 className="font-semibold text-sm text-slate-500 text-center">{t('used_by')}</h2>
+      <div className="mb-16 mt-8">
+        <h2 className="font-semibold text-sm text-slate-500 text-center">{t('landing.used_by')}</h2>
           <div className="mt-6">
             <ul className="flex gap-x-10 gap-y-6 flex-wrap items-center justify-center md:gap-x-16">
               {logos.map((item, idx) => (
