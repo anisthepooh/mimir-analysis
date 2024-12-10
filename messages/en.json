@@ -49,6 +49,9 @@
     "free_to_use_description": "The system is developed as an open-source project, so no payments are required to use it."
 
   },
+  "contact_page": {
+    "description": "Shown below is all the contributors to the project."
+  },
   "FAQ": {
     "haveQuestion": "Do you have a question?",
     "sendEmail": "Then send an email to the address below, and we will post the question and the answer here so everyone can benefit from it."

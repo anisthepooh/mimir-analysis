@@ -53,6 +53,9 @@
     "validated_description": "Systemet er udviklet ud fra en videnskabeligt testet og valideret matematisk model.",
     "free_to_use_description": "Systemet er udviklet som et open-source-projekt, så det kræver ingen betalinger at bruge."
   },
+  "contact_page": {
+    "description": "Her vises alle der har bidraget til projektet."
+  },
   "FAQ": {
     "haveQuestion": "Har du et spørgsmål?",
     "sendEmail": "Så send en mail til understående mail, og vi vil lægge spørgsmålet samt svar op her, så alle kan få glæde af det."
