@@ -8,8 +8,8 @@ const useAnswersStore = create<AnswersState>((set) => ({
     borderColor: 'border-4 border-slate-500',
     calculation: 'defaultAnswers.calculation',
     outside: '',
-    specimenBaseDate: null,
-    specimenLastDate: null
+    specimenBaseDate: '', 
+    specimenLastDate: ''
   },
   setTitle: (title) => set((state) => ({ answers: { ...state.answers, title } })),
   setText: (text) => set((state) => ({ answers: { ...state.answers, text } })),
