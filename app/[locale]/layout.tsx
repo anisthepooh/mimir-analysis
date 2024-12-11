@@ -13,6 +13,13 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
+export const metadata = {
+  title: 'My Next.js App',
+  icons: {
+    icon: '/favicon.ico',
+  },
+};
+
  
 export default async function LocaleLayout({
   children,

@@ -1,9 +1,9 @@
 'use client'
 import { Button } from '@/components/ui/button'
-import { Bookmark, Download, TestTube, TestTubeDiagonal } from 'lucide-react';
+import { Download, TestTube, TestTubeDiagonal } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import LogoGrid from './General/LogoGrid';
 import Features from './General/Features';
 import RTLSection from './General/RTLSection';
@@ -15,6 +15,25 @@ import InfoDot from '../Components/InfoDot';
 const page = () => {
   const t = useTranslations()
   const locale = useLocale()
+  const [animate, setAnimate] = useState(0)
+  const [progress, setProgress] = useState(0);
+
+
+  useEffect(() => {
+    setProgress(0);
+
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          setAnimate((aPrev) => (aPrev < 5 ? aPrev + 1 : 0)); 
+          return 0; 
+        }
+        return prev + 2; 
+      });
+    }, 100);
+
+    return () => clearInterval(interval); 
+  }, [animate]); 
 
   return (
     <div className='w-full '>
@@ -53,12 +72,12 @@ const page = () => {
           </div>
           <div className='w-[800px] h-[400px] relative mt-8 rounded-3xl mx-auto'>
             <div className='w-[816px] h-[416px] bg-sky-200 absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[32px]'></div>
-            <InfoDot classNames='peer right-[25%] bottom-[20%]' message={t('landing.point_graph')} side="right" />
-            <InfoDot classNames='peer right-[15%] top-[5%]' message={t('landing.point_print')} side="right" />
-            <InfoDot classNames='peer left-[15%] top-[5%]' message={t('landing.point_models')} side="left" />
-            <InfoDot classNames='peer left-[15%] bottom-[5%]' message={t('landing.point_interpretation')} side="left" />
-            <InfoDot classNames='peer left-[50%] top-[15%]' message={t('landing.point_input')} side="top" />
-            <InfoDot classNames='peer left-[25%] top-[40%]' message={t('landing.point_table')} side="top" />
+            <InfoDot shouldAnimate classNames='peer right-[25%] bottom-[20%]' message={t('landing.point_graph')} side="right" idx={0} animate={animate} progress={progress} setAnimate={setAnimate}/>
+            <InfoDot shouldAnimate classNames='peer right-[15%] top-[5%]' message={t('landing.point_print')} side="right" idx={1} animate={animate} progress={progress} setAnimate={setAnimate}/>
+            <InfoDot shouldAnimate classNames='peer left-[15%] top-[5%]' message={t('landing.point_models')} side="left" idx={2} animate={animate} progress={progress} setAnimate={setAnimate}/>
+            <InfoDot shouldAnimate classNames='peer left-[15%] bottom-[5%]' message={t('landing.point_interpretation')} side="left" idx={3} animate={animate} progress={progress} setAnimate={setAnimate}/>
+            <InfoDot shouldAnimate classNames='peer left-[50%] top-[15%]' message={t('landing.point_input')} side="top" idx={4} animate={animate} progress={progress} setAnimate={setAnimate}/>
+            <InfoDot shouldAnimate classNames='peer left-[25%] top-[40%]' message={t('landing.point_table')} side="top" idx={5} animate={animate} progress={progress} setAnimate={setAnimate}/>
             <Image
               alt=''
               src={"/logos/demo-shot.png"}

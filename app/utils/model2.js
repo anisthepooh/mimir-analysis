@@ -1,5 +1,5 @@
 import { differenceInDays, differenceInHours } from "date-fns"
-import { param } from "./Parameters"
+import { param } from "./parameters"
 import messages from "./locals/local"
 import { createTranslator } from "next-intl"
 import React, { createContext, useContext, ReactNode } from 'react';

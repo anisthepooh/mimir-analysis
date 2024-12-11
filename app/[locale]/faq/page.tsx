@@ -15,36 +15,38 @@ type PageContentProps = {
 const PageContent = ({ faqs }: PageContentProps) => {
   const t = useTranslations();
   return (
-    <>
-      <CardHeader>
-        <CardTitle>
-          <h1 className="text-4xl mx-auto text-center mt-8">Frequently Asked Questions</h1>
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
+    <div>
+      <div className='flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8'>
+        <div className="flex-1 space-y-4">
+          <h1 className="inline-block font-heading text-4xl tracking-tight lg:text-5xl">{t('FAQ.title')}</h1>
+          <p className="text-xl text-muted-foreground">{t('FAQ.description')}</p>
+        </div>
+      </div>
+      <hr className="my-8"></hr>
+      <div>
         <Accordion type="single" collapsible className="max-w-md mx-auto">
           {faqs?.map((faq) => (
             <AccordionComponent faq={faq} key={faq._id} />
           ))}
         </Accordion>
-      </CardContent>
-      <CardFooter>
-        <div className="mt-10 p-6 border-t border-t-muted mx-auto text-center">
-          <h3 className="font-semibold mb-2">{t('FAQ.haveQuestion')}</h3>
-          <p className="text-muted-foreground mb-4 max-w-sm">{t('FAQ.sendEmail')}</p>
+      
+        <Card className="mt-32 p-6 border-t border-t-muted mx-auto max-w-fit">
+            <h3 className="font-semibold mb-2 text-left">{t('FAQ.haveQuestion')}</h3>
+            <p className="text-left text-muted-foreground mb-4 max-w-sm">{t('FAQ.sendEmail')}</p>
          <EmailButton />
-        </div>
-      </CardFooter>
-    </>
+        </Card>
+      </div>
+    </div>
+    
   );
 };
 
 const page = async () => {
   const faqs = await getFaqs();
   return (
-    <Card className="container my-8 mx-auto">
+    <div className='container mx-auto max-w-4xl py-6 lg:py-10"'>
       <PageContent faqs={faqs} />
-    </Card>
+    </div>
   );
 };
 

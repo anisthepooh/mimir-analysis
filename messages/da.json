@@ -38,12 +38,12 @@
     "get_started": "Start med at indtaste",
     "download_as_app": "Hent som app",
     "used_by": "Brugt af:",
-    "point_graph": "Graf der visualisere udvilkingen i indtatede tests",
-    "point_print": "Genvej til at printe test fortolkningerne",
+    "point_graph": "Graf der visualiserer udviklingen i indtastede tests",
+    "point_print": "Genvej til at printe testfortolkningerne",
     "point_models": "Vælg blandt to modeller",
-    "point_interpretation": "Forstålige fortolkninger der guider dig til næste skridt",
-    "point_input": "Guidede input felter, der minimere fejl",
-    "point_table": "Overskulige tabel over indtastede tests"
+    "point_interpretation": "Forståelige fortolkninger, der guider dig til næste skridt",
+    "point_input": "Guidede inputfelter, der minimerer fejl",
+    "point_table": "Overskuelig tabel over indtastede tests"
   },
   "feature": {
     "easy_to_use": "Nemt at bruge",
@@ -57,6 +57,8 @@
     "description": "Her vises alle der har bidraget til projektet."
   },
   "FAQ": {
+    "title": "Ofte stillede spørgmål",
+    "description": "Spørgsmålene bliver løbende opdateret, som der kommer nye til.",
     "haveQuestion": "Har du et spørgsmål?",
     "sendEmail": "Så send en mail til understående mail, og vi vil lægge spørgsmålet samt svar op her, så alle kan få glæde af det."
   },

@@ -38,7 +38,13 @@
     "subtitle": "Easy to use, clear interpretations, readable graph, printable, and much more...",
     "get_started": "Get started",
     "download_as_app": "Download as app",
-    "used_by": "Used by:"
+    "used_by": "Used by:",
+    "point_graph": "Graph that visualizes the progress of entered tests",
+    "point_print": "Shortcut to print test interpretations",
+    "point_models": "Choose between two models",
+    "point_interpretation": "Understandable interpretations that guide you to the next step",
+    "point_input": "Guided input fields that minimize errors",
+    "point_table": "Clear table of entered tests"
   },
   "feature": {
     "easy_to_use": "Easy to use",
@@ -53,6 +59,8 @@
     "description": "Shown below is all the contributors to the project."
   },
   "FAQ": {
+    "title": "Frequently asked questions",
+    "description": "The questions are continuously updated as new ones are added.",
     "haveQuestion": "Do you have a question?",
     "sendEmail": "Then send an email to the address below, and we will post the question and the answer here so everyone can benefit from it."
   },
