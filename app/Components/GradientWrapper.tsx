@@ -4,12 +4,11 @@ type Props = {
     children: React.ReactNode;
 }
 
-const GradientWrapper = ({ children, hidden, ...props }: Props) => {
+const GradientWrapper = ({ children, hidden, }: Props) => {
     if (hidden) return null
     return (
     <div
-        {...props}
-        className={`relative overflow-hidden border-t ${props.className || ""}`}>
+        className={`relative overflow-hidden border-t`}>
         <div className="blur-[100px] absolute inset-0 w-full h-full bg-gradient-to-b from-sky-100 to-white"
             >
 
