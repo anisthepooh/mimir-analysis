@@ -3,7 +3,11 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { AvatarImage } from '@radix-ui/react-avatar'
 import React from 'react'
 
-const TestimonialSection = (hidden) => {
+type Props = {
+  hidden: boolean;
+}
+
+const TestimonialSection = ({hidden}: Props) => {
   if (hidden) return null
 
   const testimonials = [

@@ -37,7 +37,7 @@ const Modal: React.FC<ModalProps> = ({ triggerTitle, title, children }) => {
           {children}
         </DialogDescription>
         <DialogFooter>
-            <Button onClick={() => toggleModal(false)}>
+            <Button onClick={() => toggleModal()}>
               OK
             </Button>
         </DialogFooter>

@@ -29,8 +29,8 @@ const Content = ({article}: Props) => {
     return getFileAsset (source, client.config())
   }
 
-  console.log(article)
 
+  // @ts-ignore
   const components: PortableTextReactComponents = {
     block: {
       h1: ({ children }) => <h1 className="text-2xl bg-slate-400">{children}</h1>,

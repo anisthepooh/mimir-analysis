@@ -1,8 +1,13 @@
 import React from 'react'
 import ArticleCard from './ArticleCard'
 import { useTranslations } from 'next-intl'
+import { Article } from '@/types/Article'
 
-const Content = ({articles}) => {
+type Props = {
+  articles: Article[];
+}
+
+const Content = ({articles}: Props ) => {
   const t = useTranslations()
   return (
     <div className='container mx-auto max-w-4xl py-6 lg:py-10"'>

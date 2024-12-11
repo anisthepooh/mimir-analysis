@@ -98,7 +98,7 @@ function Input({ setUnit, model, unit }: InputProps) {
     if (!date || !value) return;
 
     if (differenceInDays(answers.specimenLastDate, answers.specimenBaseDate) >= 31){
-      return toggleModal(true)
+      return toggleModal()
     }
   
     // @ts-ignore
