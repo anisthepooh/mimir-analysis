@@ -3,6 +3,7 @@ import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from '../../co
 import { cn } from '@/lib/utils'
 import { TooltipArrow } from '@radix-ui/react-tooltip'
 import { Progress } from '@/components/ui/progress'
+import { useUtilitiesStore } from '../_store'
 
 type Props = {
   classNames: string;
@@ -12,10 +13,10 @@ type Props = {
   animate: number;
   progress: number;
   setAnimate: any;
-  shouldAnimate: boolean; 
 }
 
-const InfoDot = ({classNames, message, side, idx, animate, progress, setAnimate, shouldAnimate}: Props) => {
+const InfoDot = ({classNames, message, side, idx, animate, progress, setAnimate}: Props) => {
+  const {shouldAnimate} = useUtilitiesStore()
   const animating = animate === idx
 
   return (
@@ -28,7 +29,7 @@ const InfoDot = ({classNames, message, side, idx, animate, progress, setAnimate,
   <div 
     className={cn(
       "absolute w-8 h-8 bg-sky-500/50 rounded-full duration-1000 group-hover:animate-ping",
-      {"animate-ping": animating}
+      {"animate-ping": animating && shouldAnimate}
     )}
   ></div>
   <div className="z-10 h-4 w-4 flex items-center justify-center">
@@ -37,11 +38,14 @@ const InfoDot = ({classNames, message, side, idx, animate, progress, setAnimate,
         <TooltipTrigger 
           className={cn(
             "rounded-full w-4 h-4 bg-sky-500 shadow group-hover:scale-150 transition-transform duration-500",
-            {"scale-150": animating} 
+            {"scale-150": animating && shouldAnimate} 
           )}
           onClick={() => setAnimate(idx)}
         ></TooltipTrigger>
-        <TooltipContent side={side} data-side={side} className='flex flex-col relative min-h-12 justify-center'>
+        <TooltipContent side={side} data-side={side} className={cn(
+          'flex flex-col relative min-h-12 justify-center',
+          {'hidden': !shouldAnimate}
+          )}>
           {(animating && shouldAnimate) && <Progress value={progress} max={100} className="w-full bg-white absolute top-0 right-0 rounded-none h-1 "></Progress>}
           {message}
           <TooltipArrow className='fill-sky-800' />

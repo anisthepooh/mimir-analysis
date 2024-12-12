@@ -32,6 +32,8 @@
   "less_than_two_days_warning": "<strong>Advarsel:</strong> Datoen er mindre end to dage væk!",
   "violates_the_model": "Dette er imod modellens regler.",
   "less_than_two_days_warning_occational": "<strong>Warning:</strong> Tiden mellem de to tests kan overskride 120 timer, når den lejlighedsvise model bruges.",
+  "dashboard": "Dashboard",
+  "articles_description": "Her er der samlet artikler, der kan gøre dig klogere på systemt.",
   "landing": {
     "title": "Få præcise fortolkninger af cannabisprøver nemt og forståligt",
     "subtitle": "Let at bruge, klare fortolkninger, læsbar graf, udskrivbar og meget mere...",

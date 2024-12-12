@@ -21,8 +21,8 @@ const Content: React.FC<ContentProps> = ({ authors }) => {
       </div>
       <hr className="my-8"></hr>
       <div className='grid gap-10 sm:grid-cols-2'>
-        {authors?.map((author) => (
-          <ContactCard author={author} />
+        {authors?.map((author, idx) => (
+          <ContactCard key={idx} author={author} />
         ))}
       </div>
     </div>

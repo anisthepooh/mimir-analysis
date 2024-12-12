@@ -10,6 +10,7 @@ interface ResultTableProps {
 }
 
 const ResultTable: React.FC<ResultTableProps> = ({ model, unit }) => {
+  const t = useTranslations()
   const { datapoints } = useDatapointsStore()
   const { answers } = useAnswersStore()
   const locale = useLocale();
@@ -23,19 +24,19 @@ const ResultTable: React.FC<ResultTableProps> = ({ model, unit }) => {
               <TableHead>
                 <div className="flex items-center gap-1">
                   <Hash className="w-4 h-4" />
-                  {'test_nb'}
+                  {t('test_nb')}
                 </div>
               </TableHead>
               <TableHead>
                 <div className="flex items-center gap-1">
                   <Calendar className="w-4 h-4" />
-                  {'tested'}
+                  {t('tested')}
                 </div>
               </TableHead>
               <TableHead>
                 <div className="flex items-center gap-1">
                   <TestTube className="w-4 h-4" />
-                  {'test_value'}
+                  {t('test_value')}
                 </div>
               </TableHead>
             </TableRow>

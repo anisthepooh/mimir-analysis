@@ -26,3 +26,14 @@ export type AnswersState = {
   setSpecimenBaseDate: (specimenBaseDate: Date) => void;
   setSpecimenLastDate: (specimenLastDate: Date) => void;
 }
+
+export type Utilities = {
+  isOpen: boolean;
+  toggleModal: () => void;
+  warning: React.ReactNode | null;
+  isWarningOpen: boolean;
+  setOpenWarning: (isWarningOpen: boolean) => void;
+  setWarning: (warning: React.ReactNode) => void;
+  shouldAnimate: boolean;
+  setShouldAnimate: (shouldAnimate: boolean) => void;
+}

@@ -36,7 +36,7 @@ const page = () => {
   }, [animate]); 
 
   return (
-    <div className='w-full '>
+    <div className='w-full overflow-hidden '>
       <div className=" py-8 bg-gradient-to-b from-sky-200 to-slate-50">
         <div className="container px-4 md:px-6 mx-auto ">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -72,13 +72,15 @@ const page = () => {
           </div>
           <div className='w-[800px] h-[400px] relative mt-8 rounded-3xl mx-auto'>
             <div className='w-[816px] h-[416px] bg-sky-200 absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[32px]'></div>
-            <InfoDot shouldAnimate classNames='peer right-[25%] bottom-[20%]' message={t('landing.point_graph')} side="right" idx={0} animate={animate} progress={progress} setAnimate={setAnimate}/>
-            <InfoDot shouldAnimate classNames='peer right-[15%] top-[5%]' message={t('landing.point_print')} side="right" idx={1} animate={animate} progress={progress} setAnimate={setAnimate}/>
-            <InfoDot shouldAnimate classNames='peer left-[15%] top-[5%]' message={t('landing.point_models')} side="left" idx={2} animate={animate} progress={progress} setAnimate={setAnimate}/>
-            <InfoDot shouldAnimate classNames='peer left-[15%] bottom-[5%]' message={t('landing.point_interpretation')} side="left" idx={3} animate={animate} progress={progress} setAnimate={setAnimate}/>
-            <InfoDot shouldAnimate classNames='peer left-[50%] top-[15%]' message={t('landing.point_input')} side="top" idx={4} animate={animate} progress={progress} setAnimate={setAnimate}/>
-            <InfoDot shouldAnimate classNames='peer left-[25%] top-[40%]' message={t('landing.point_table')} side="top" idx={5} animate={animate} progress={progress} setAnimate={setAnimate}/>
+            <InfoDot classNames='peer right-[25%] bottom-[20%]' message={t('landing.point_graph')} side="right" idx={0} animate={animate} progress={progress} setAnimate={setAnimate}/>
+            <InfoDot classNames='peer right-[15%] top-[5%]' message={t('landing.point_print')} side="right" idx={1} animate={animate} progress={progress} setAnimate={setAnimate}/>
+            <InfoDot classNames='peer left-[15%] top-[5%]' message={t('landing.point_models')} side="left" idx={2} animate={animate} progress={progress} setAnimate={setAnimate}/>
+            <InfoDot classNames='peer left-[15%] bottom-[5%]' message={t('landing.point_interpretation')} side="left" idx={3} animate={animate} progress={progress} setAnimate={setAnimate}/>
+            <InfoDot classNames='peer left-[50%] top-[15%]' message={t('landing.point_input')} side="top" idx={4} animate={animate} progress={progress} setAnimate={setAnimate}/>
+            <InfoDot classNames='peer left-[25%] top-[40%]' message={t('landing.point_table')} side="top" idx={5} animate={animate} progress={progress} setAnimate={setAnimate}/>
             <Image
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,..."
               alt=''
               src={"/logos/demo-shot.png"}
               width={800}
