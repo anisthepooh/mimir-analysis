@@ -34,6 +34,7 @@ const nonTextInputTypes = new Set([
 
 // The number of active usePreventScroll calls. Used to determine whether to revert back to the original page style/scroll position
 let preventScrollCount = 0;
+// @ts-ignore
 let restore;
 
 /**
@@ -61,6 +62,7 @@ export function usePreventScroll(options: PreventScrollOptions = {}) {
     return () => {
       preventScrollCount--;
       if (preventScrollCount === 0) {
+        // @ts-ignore
         restore();
       }
     };
@@ -105,6 +107,7 @@ function preventScrollStandard() {
 //    to navigate to an input with the next/previous buttons that's outside a modal.
 function preventScrollMobileSafari() {
   let scrollable: Element;
+  // @ts-ignore
   let restoreScrollableStyles;
   let onTouchStart = (e: TouchEvent) => {
     // Store the nearest scrollable parent element from the element that the user touched.
@@ -140,6 +143,7 @@ function preventScrollMobileSafari() {
   };
 
   let onTouchEnd = () => {
+    // @ts-ignore
     if (restoreScrollableStyles) {
       restoreScrollableStyles();
     }
@@ -216,6 +220,7 @@ function preventScrollMobileSafari() {
 
   return () => {
     // Restore styles and scroll the page back to where it was.
+    // @ts-ignore
     restoreScrollableStyles?.();
     restoreStyles?.();
     removeEvents();
@@ -224,10 +229,13 @@ function preventScrollMobileSafari() {
 
 // Sets a CSS property on an element, and returns a function to revert it to the previous value.
 function setStyle(element: HTMLElement, style: string, value: string) {
+  // @ts-ignore
   let cur = element.style[style];
+  // @ts-ignore
   element.style[style] = value;
 
   return () => {
+    // @ts-ignore
     element.style[style] = cur;
   };
 }
