@@ -1,4 +1,5 @@
-import { differenceInDays, differenceInHours } from "date-fns"
+'use client'
+import { addDays, differenceInDays, differenceInHours } from "date-fns"
 import { param } from "./parameters"
 import messages from "./locals/local"
 import { createTranslator } from "next-intl"
@@ -21,6 +22,7 @@ export const useModel = () => {
 
 const ModelComponent = ({children}) => {
 
+  
   const {  
     setTitle, 
     setText, 
@@ -245,7 +247,7 @@ const ModelComponent = ({children}) => {
                 }
                 else{
                     setTitle(t("case6_3.title"))
-                    setText(t("case6_3.text", {date: dateBase, nextDate: new Date(datapoints[specimenBase].date).addDays(15).toLocaleDateString('dk-DK', { year: 'numeric', month: 'long', day: 'numeric' })}))
+                    setText(t("case6_3.text", {date: dateBase, nextDate: addDays(new Date(datapoints[specimenBase].date), 15).toLocaleDateString('da-DK', { year: 'numeric', month: 'long', day: 'numeric' })}))
                     setBorderColor(borderColors.orangeBorder)
                 }
             }
