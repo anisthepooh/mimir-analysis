@@ -42,8 +42,8 @@ export default async function LocaleLayout({
     <html lang={locale} className={inter.variable}>
     <head>
     <Script
-          src="https://cloud.umami.is/script.js"
-          data-website-id="049e6081-8c6b-47ab-8825-edff9543d250"
+          src="https://mimir-analytics.casperanisimow.dk/script.js"
+          data-website-id="e2f61db1-22f9-45ce-9ec8-146db1e4d9bb"
           strategy="lazyOnload"
         />
     </head>
