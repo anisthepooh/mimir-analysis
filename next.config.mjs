@@ -22,6 +22,9 @@ const nextConfig = {
     // Disable TypeScript build-time error checking
     ignoreBuildErrors: true,
   },
+  env: {
+    NEXT_PUBLIC_IS_DEVELOPMENT: process.env.NODE_ENV === "development" ? "true" : "false",
+  },
 };
  
 export default withNextIntl(nextConfig);

@@ -8,6 +8,7 @@ import { Toaster } from 'sonner';
 import Footer from '../Components/Footer';
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
+import CookieConsent from '../Components/CookieConsent';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -33,19 +34,21 @@ export default async function LocaleLayout({
   if (!routing.locales.includes(locale as any)) {
     notFound();
   }
+  const isDevelopment = process.env.NEXT_PUBLIC_IS_DEVELOPMENT === "true";
  
   // Providing all messages to the client
   // side is the easiest way to get started
   const messages = await getMessages();
- 
   return (
     <html lang={locale} className={inter.variable}>
     <head>
-    <Script
+      {!isDevelopment && (
+        <Script
           src="https://mimir-analytics.casperanisimow.dk/script.js"
           data-website-id="e2f61db1-22f9-45ce-9ec8-146db1e4d9bb"
           strategy="lazyOnload"
         />
+      )}
     </head>
       <body className='font-sans'>
         <NextIntlClientProvider messages={messages}>
@@ -54,6 +57,7 @@ export default async function LocaleLayout({
             {children}
             <Footer />
           </div>
+          <CookieConsent variant='small' />
           <Toaster richColors closeButton/>
         </NextIntlClientProvider>
       </body>

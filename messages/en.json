@@ -35,6 +35,18 @@
   "less_than_two_days_warning_occational": "<strong>Warning:</strong> The time between the two tests can exceed 120 hours when using the occasional model.",
   "dashboard": "Dashboard",
   "articles_description": "This is a collection of articles to inform you more about the system.",
+  "decline": "Decline",
+  "accept": "Accept",
+  "learn_more": "Learn more",
+  "cookies": {
+    "title": "This site uses Cookies",
+    "description": " We use cookies to ensure you get the best experience on our website.",
+    "agreement": {
+      "part1": "By clicking \"",
+      "accept": "Accept",
+      "part2": "\", you agree to our use of cookies."
+    }
+  },
   "landing": {
     "title": "Get precise interpretations on Cannabis tests with ease",
     "subtitle": "Easy to use, clear interpretations, readable graph, printable, and much more...",

@@ -34,6 +34,18 @@
   "less_than_two_days_warning_occational": "<strong>Warning:</strong> Tiden mellem de to tests kan overskride 120 timer, når den lejlighedsvise model bruges.",
   "dashboard": "Dashboard",
   "articles_description": "Her er der samlet artikler, der kan gøre dig klogere på systemt.",
+  "decline": "Afvis",
+  "accept": "Accepter",
+  "learn_more": "Læs mere",
+  "cookies": {
+    "title": "Siden bruger Cookies",
+    "description": "Vi bruger cookies for at sikre, at du får den bedste oplevelse på vores hjemmeside.",
+    "agreement": {
+      "part1": "Ved at klikke på \"",
+      "accept": "Accepter",
+      "part2": "\", accepterer du vores brug af cookies."
+    }
+  },
   "landing": {
     "title": "Få præcise fortolkninger af cannabisprøver nemt og forståligt",
     "subtitle": "Let at bruge, klare fortolkninger, læsbar graf, udskrivbar og meget mere...",
