@@ -7,7 +7,7 @@ const page = async () => {
   const articles = await getArticles()
   
   return (
-    <div className='bg-white'>
+    <div className='bg-white '>
       <GradientWrapper>
         <Content articles={articles} />
       </GradientWrapper>

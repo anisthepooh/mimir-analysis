@@ -75,6 +75,9 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  h1 {
+    @apply text-2xl sm:text-4xl font-semibold;
+  }
   p {
     @apply text-base;
   }

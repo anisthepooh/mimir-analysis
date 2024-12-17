@@ -59,7 +59,7 @@ const Content = ({article}: Props) => {
          <article className="prose prose-zinc mx-auto " key={title}>
           <Image src={coverImage} width={1250} height={340} alt={title} /> 
           <p className="text-zinc-500  mb-2">{formatDate(publishedAt, localActive )}</p>
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl lg:leading-[3.5rem] mb-4">
+          <h1 className=" font-extrabold tracking-tight lg:leading-[3.5rem] mb-4">
             {title}
           </h1>
           <div className='flex justify-between flex-wrap'>
