@@ -18,11 +18,10 @@ export default function Home() {
   return (
     <ModelComponent>
       <GradientWrapper>
-      <div className=" container mx-auto">
+      <div className=" container px-4 md:px-6 mx-auto">
         <Dashboard
           model={model}
           setModel={setModel}
-          //setDatapoints={setDatapoints}
         />
         <InputContainer 
           model={model}

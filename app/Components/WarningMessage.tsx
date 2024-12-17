@@ -12,7 +12,7 @@ const WarningMessage = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.5 }}
-              className="flex gap-2 items-center text-yellow-800 bg-yellow-100 rounded-lg px-4 py-1 text-sm font-medium"
+              className="flex flex-col sm:flex-row gap-2 items-center text-yellow-800 bg-yellow-100 rounded-lg px-4 py-1 text-sm font-medium"
             >
               <TriangleAlert size={16} className="text-yellow-400" />
               {warning}

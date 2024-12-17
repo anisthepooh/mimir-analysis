@@ -22,19 +22,19 @@ const ResultTable: React.FC<ResultTableProps> = ({ model, unit }) => {
           <TableHeader className="rounded-b-none">
             <TableRow className="bg-base-200 bg-muted/50 rounded-b-none">
               <TableHead>
-                <div className="flex items-center gap-1">
+                <div className="flex-col sm:flex-row flex items-center gap-1">
                   <Hash className="w-4 h-4" />
                   {t('test_nb')}
                 </div>
               </TableHead>
               <TableHead>
-                <div className="flex items-center gap-1">
+                <div className="flex-col sm:flex-row  flex items-center gap-1">
                   <Calendar className="w-4 h-4" />
                   {t('tested')}
                 </div>
               </TableHead>
               <TableHead>
-                <div className="flex items-center gap-1">
+                <div className="flex-col sm:flex-row  flex items-center gap-1">
                   <TestTube className="w-4 h-4" />
                   {t('test_value')}
                 </div>

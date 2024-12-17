@@ -132,8 +132,8 @@ function Input({ setUnit, model, unit }: InputProps) {
   return (
     <div className="w-full flex justify-center items-center flex-col relative">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex justify-center flex-col items-center mt-4 flex-wrap relative">
-          <div className="flex justify-between text-center items-center rounded-lg p-2 gap-4 border border-slate-200">
+        <div className="flex justify-center items-center mt-4 flex-wrap relative">
+          <div className="flex flex-col sm:flex-row justify-between text-center items-start sm:flex-start rounded-lg p-2 gap-4 border border-slate-200">
             <p className="w-8 h-8 bg-muted rounded-lg text-center flex justify-center items-center" id="testnumber">
               {datapoints.length + 1}
             </p>
@@ -182,7 +182,7 @@ function Input({ setUnit, model, unit }: InputProps) {
                 </SelectContent>
               </Select>
             </div>
-            <Button variant={'default'} type="submit" disabled={(!date || !value) }>
+            <Button className='w-full' variant={'default'} type="submit" disabled={(!date || !value) }>
               <Plus />
               {t('common.add_result')}
             </Button>

@@ -21,16 +21,17 @@ const Dashboard: React.FC<DashboardProps> = ({
       setModel(target); // Update the model
       setTimeout(() => {
         window.location.reload(); // Refresh the page
-      }, 500)
+      }, 500)              
+
     }
   };
   return (
     <div className='my-8 w-full'>
       <div className='flex items-center justify-between'>
-        <h1 className='text-4xl font-semibold'>{t('overview_tests')}</h1>
+        <h1 className='text-2xl sm:text-4xl font-semibold tracking-tighter'>{t('overview_tests')}</h1>
       </div>
       <div className='flex justify-between items-center mt-16'>
-      <div className="inline-flex rounded-lg  text-muted-foreground bg-muted p-1">
+      <div className="flex-col sm:flex-row inline-flex rounded-lg text-muted-foreground bg-muted p-1">
         <button
             key={"tab"}
             value="cronical" 
