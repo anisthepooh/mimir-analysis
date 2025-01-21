@@ -1,7 +1,6 @@
 const messages = {
   "da": {
       "license": "©2024 Mimir - Cannabis Test Rapport. Dette websted og dets indhold er beskyttet under GNU Affero General Public License version 3 (AGPL-3.0). Denne software er distribueret i håbet om at være nyttig, men UDEN NOGEN GARANTI; uden endda den stiltiende garanti om SALGBARHED eller EGNETHET TIL ET BESTEMT FORMÅL. Se GNU Affero General Public License for flere detaljer.",
-      "enterData": "Indtast dato'er og prøve resultater for at få vist en graf over resultater",
       "changingModel": "Du ændrer nu modellen til {target}, bekræft for at ændre.",
       "interpretation": "Fortolkning",
       "knowledgecenter": "Videnscenter",
@@ -17,7 +16,6 @@ const messages = {
       "test_nb": "Test nr.",
       "tested": "Testet den",
       "test_value": "Test værdi",
-      "add_data": "Indtast dato'er og prøve resultater for at få vist en graf over resultater",
       "danish": "Dansk",
       "english": "Engelsk",
       "powered_by": "Leveret af",
@@ -83,21 +81,13 @@ const messages = {
       "case6": {
         "calculation": "Modellen har givet følgende resultat baseret på test nr. {testNumber1} og test nr. {testNumber2}"
       },
-      "case6_1": {
+      "sign_of_new_use": {
         "title": "Tegn på nyt indtag",
-        "text": "Der er evidens for nyt forbrug. Næste beregning vil ske med udgangspunkt i testen fra den {date}"
-      },
-      "case6_2": {
-        "title": "Tegn på nyt indtag.",
         "text": "Der er evidens for nyt forbrug. Næste beregning vil ske med udgangspunkt i testen fra den {date}"
       },
       "case6_3": {
         "title": "Risiko for falsk forudsigelse af nyt indtag",
         "text": "BEMÆRK: Der er mulighed for en falsk positiv forudsigelse i op til 14 dage fra testen den {date}, foretag derfor næste test efter den {nextDate}, hvorefter modellen vil være præcis."
-      },
-      "case6_4_1": {
-        "title": "Tegn på nyt indtag",
-        "text": "Der er evidens for nyt forbrug. Næste beregning vil ske med udgangspunkt i testen fra den {date}"
       },
       "case6_4_2": {
         "title": "Ny prøve påkrævet. Modellen kan endnu ikke forudsige et resultat. Der er risiko for falsk forudsigelse af nyt indtag.",
@@ -147,7 +137,6 @@ const messages = {
       "overview_tests": "Overview of test results",
       "user_id": "User ID:",
       "change_user": "Change user",
-      "chronic_use": "Chronic use",
       "occasional_use": "Occasional use",
       "download_report": "Download report",
       "enter_values": "Enter test values below:",
@@ -221,21 +210,13 @@ const messages = {
       "case6": {
         "calculation": "The model has given the following result based on test no. {testNumber1} and test no. {testNumber2}"
       },
-      "case6_1": {
+      "sign_of_new_use": {
         "title": "Sign of new intake",
-        "text": "There is evidence of new use. The next calculation will be based on the test from {date}."
-      },
-      "case6_2": {
-        "title": "Sign of new intake.",
         "text": "There is evidence of new use. The next calculation will be based on the test from {date}."
       },
       "case6_3": {
         "title": "Risk of false prediction of new intake",
         "text": "NOTE: There is a possibility of a false positive prediction for up to 14 days from the test on {date}, so take the next test after {nextDate}, after which the model will be accurate."
-      },
-      "case6_4_1": {
-        "title": "Sign of new intake",
-        "text": "There is evidence of new use. The next calculation will be based on the test from {date}."
       },
       "case6_4_2": {
         "title": "New test required. The model cannot yet predict a result. There is a risk of false prediction of new intake.",

@@ -50,14 +50,6 @@ function Input({ setUnit, model, unit }: InputProps) {
       convertNgMg2( model, unit, localActive)
     }
   }, [datapoints]);
-
-  function isMoreThan30DaysAway(date: Date | string, currentDate: Date | null) {
-    if (!currentDate) return
-    //@ts-ignore
-    const thirtyDaysFromNow = addDays(currentDate, 30);
-    return isAfter(date, thirtyDaysFromNow)
-  }
-
   
 
   useEffect(() => {
@@ -96,8 +88,8 @@ function Input({ setUnit, model, unit }: InputProps) {
   
   const onSubmit = () => {
     if (!date || !value) return;
-
-    if (differenceInDays(answers.specimenLastDate, answers.specimenBaseDate) >= 31){
+    console.log(useAnswersStore.getState(answers).answers)
+    if (differenceInDays( useAnswersStore.getState(answers).answers.specimenLastDate,  useAnswersStore.getState(answers).answers.specimenBaseDate) >= 31){
       return toggleModal()
     }
   

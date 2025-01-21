@@ -14,6 +14,7 @@ export type Answers = {
   outside: string;
   specimenBaseDate: Date | ''; 
   specimenLastDate: Date | ''; 
+  specimenBase: number
 }
 
 export type AnswersState = {
@@ -25,6 +26,7 @@ export type AnswersState = {
   setOutside: (outside: string) => void;
   setSpecimenBaseDate: (specimenBaseDate: Date) => void;
   setSpecimenLastDate: (specimenLastDate: Date) => void;
+  setSpecimenBase: (setSpecimenBase: number) => void;
 }
 
 export type Utilities = {
