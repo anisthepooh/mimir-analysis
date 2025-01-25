@@ -1,7 +1,7 @@
 export type DataPoint = {
   id: any;
   value: number;
-  date: Date;
+  date: Date | null;
   answerTitle: string;
   answerBorder: string;
 }
@@ -12,9 +12,12 @@ export type Answers = {
   borderColor: string;
   calculation: string;
   outside: string;
-  specimenBaseDate: Date | ''; 
-  specimenLastDate: Date | ''; 
+  //specimenBaseDate: Date | null; 
+  //specimenLastDate: Date | null; 
+  baseDate: Date | null;
+  lastDate: Date | null;
   specimenBase: number
+  specimenLast: number
 }
 
 export type AnswersState = {
@@ -24,10 +27,17 @@ export type AnswersState = {
   setBorderColor: (color: string) => void;
   setCalculation: (calculation: string) => void;
   setOutside: (outside: string) => void;
-  setSpecimenBaseDate: (specimenBaseDate: Date) => void;
-  setSpecimenLastDate: (specimenLastDate: Date) => void;
+  // setSpecimenBaseDate: (specimenBaseDate: Date) => void;
+  // setSpecimenLastDate: (specimenLastDate: Date) => void;
+  setBaseDate: (baseDate: Date) => void;
+  setLastDate: (lastDate: Date) => void;
   setSpecimenBase: (setSpecimenBase: number) => void;
+  setSpecimenLast: (setSpecimenLast: number) => void;
 }
+
+export type UnitType = "mg/mol" | "mg/dL";
+export type ModelType = "cronical" | "occational";
+
 
 export type Utilities = {
   isOpen: boolean;
@@ -38,4 +48,10 @@ export type Utilities = {
   setWarning: (warning: React.ReactNode) => void;
   shouldAnimate: boolean;
   setShouldAnimate: (shouldAnimate: boolean) => void;
+  lang: string;
+  setLang: (value: string) => void;
+  model: ModelType;
+  setModel: (value: ModelType) => void;
+  unit: UnitType;
+  setUnit: (value: UnitType) => void;
 }

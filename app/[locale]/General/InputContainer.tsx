@@ -4,16 +4,14 @@ import Input from './Input';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import ResultTable from './ResultTable';
 import WarningMessage from '@/app/Components/WarningMessage';
+import { useUtilitiesStore } from '@/app/_store';
 
 interface InputContainerProps {
-  answers?: any;
-  model: string;
-  setUnit: (unit: any) => void;
-  unit: string
 }
 
-const InputContainer: React.FC<InputContainerProps> = ({ answers, model, setUnit, unit }) => {
+const InputContainer: React.FC<InputContainerProps> = () => {
   const t  = useTranslations();
+  const {model, unit, setUnit} = useUtilitiesStore()
 
 
   return (
@@ -33,11 +31,7 @@ const InputContainer: React.FC<InputContainerProps> = ({ answers, model, setUnit
         <div className="mx-auto w-fit">
           <WarningMessage/>
         </div>
-        <Input 
-          setUnit={setUnit}
-          model={model}
-          unit={unit}
-        />
+        <Input/>
       </CardContent>
       <CardFooter>
         <ResultTable model={model} unit={unit} />

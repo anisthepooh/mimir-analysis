@@ -9,21 +9,14 @@ import { DateTimePicker } from '@/components/ui/DateTimePicker';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { type Locale, enUS, da } from 'date-fns/locale';
-// import { convertNgMg2 } from '@/app/utils/model2';
 import { useForm, Controller } from 'react-hook-form';
 import { useAnswersStore, useDatapointsStore, useUtilitiesStore } from '@/app/_store';
 import { addDays, differenceInDays, differenceInHours, isAfter, isBefore } from 'date-fns';
-import { useModel } from '@/app/utils/model2';
+import { useModel } from '@/app/utils/model';
+import { UnitType } from '@/app/_store/types';
 
-interface InputProps {
-  setUnit: (unit: string) => void;
-  model: string;
-  unit: string;
-}
-
-
-function Input({ setUnit, model, unit }: InputProps) {
-  const { convertNgMg2 } = useModel();
+function Input() {
+  const {call} = useModel()
   const t = useTranslations()
   const { control, handleSubmit, reset, watch } = useForm({
     defaultValues: {
@@ -32,12 +25,20 @@ function Input({ setUnit, model, unit }: InputProps) {
     },
   });
   const {datapoints, setDatapoints} = useDatapointsStore()
-  const {answers} = useAnswersStore()
   const {
     toggleModal,
     setWarning,
-    setOpenWarning
+    setOpenWarning,
+    model, 
+    unit, 
+    setUnit
   } = useUtilitiesStore()
+  const {
+    setBaseDate,
+    setLastDate,
+    setSpecimenBase,
+    setSpecimenLast,
+  } = useAnswersStore()
   const localActive = useLocale();
   const [lastDate, setDateLast] = useState<Date | null>(null);
   const date = watch('date')
@@ -45,16 +46,17 @@ function Input({ setUnit, model, unit }: InputProps) {
 
   useEffect(() => {
     if (datapoints.length > 0) {
-      setDateLast(new Date(datapoints[datapoints.length - 1].date))
       //@ts-ignore
-      convertNgMg2( model, unit, localActive)
+      setDateLast(new Date(useDatapointsStore.getState().datapoints[datapoints.length - 1].date))
     }
   }, [datapoints]);
   
 
   useEffect(() => {
+    //@ts-ignore
     if (!lastDate || isBefore(date, lastDate)) return
     if (model === "cronical") {
+      //@ts-ignore
       if (differenceInHours(date, lastDate) < 48 ) {
         setOpenWarning(true)
         setWarning(
@@ -70,6 +72,7 @@ function Input({ setUnit, model, unit }: InputProps) {
         setOpenWarning(false)
       }
     } else if (model === "occational" && lastDate) {
+        //@ts-ignore
         if (differenceInHours(date, lastDate) > 120 ) {
           setOpenWarning(true)
           setWarning(
@@ -86,15 +89,16 @@ function Input({ setUnit, model, unit }: InputProps) {
     
   },[date])
   
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (!date || !value) return;
-    console.log(useAnswersStore.getState(answers).answers)
-    if (differenceInDays( useAnswersStore.getState(answers).answers.specimenLastDate,  useAnswersStore.getState(answers).answers.specimenBaseDate) >= 31){
-      return toggleModal()
+  
+    // @ts-ignore
+    if (differenceInDays(lastDate, useAnswersStore.getState().answers.baseDate) >= 31) {
+      return toggleModal();
     }
   
     // @ts-ignore
-    if (datapoints.length === 0 || isBefore(lastDate, date) ) {
+    if (datapoints.length === 0 || isBefore(lastDate, date)) {
       const newDatapoint = {
         id: uuidv4(),
         value: Number(value),
@@ -102,18 +106,34 @@ function Input({ setUnit, model, unit }: InputProps) {
         answerTitle: 'Example Title',
         answerBorder: 'normalBorder',
       };
-      // @ts-ignore
-      setDatapoints([...datapoints, newDatapoint])
-      setOpenWarning(false)
-      reset()
-      const formattedDate = model === "cronical" ?  new Date(date).toLocaleDateString(localActive, { year: 'numeric', month: 'long', day: 'numeric' }) :  new Date(date).toLocaleDateString(localActive, { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false })
+  
+      setDatapoints([...datapoints, newDatapoint]);
+      call(model, unit); // Trigger the model call
+      setOpenWarning(false);
+      reset();
+  
+      const formattedDate =
+        model === 'cronical'
+          ? new Date(date).toLocaleDateString(localActive, { year: 'numeric', month: 'long', day: 'numeric' })
+          : new Date(date).toLocaleDateString(localActive, {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+              hour: 'numeric',
+              minute: 'numeric',
+              second: 'numeric',
+              hour12: false,
+            });
+  
       toast.success(t('toast.result_added'), {
-        description: `${(t('test_value'))}: ${value} - ${(t('common.test_date'))} ${formattedDate}`
-      })
+        description: `${t('test_value')}: ${value} - ${t('common.test_date')} ${formattedDate}`,
+      });
     } else {
-      toast.warning(t('toast.error_date'))
+      toast.warning(t('toast.error_date'));
     }
   };
+  
+  
   
   function buttonHandlerDelete() {
     window.location.reload();
@@ -159,7 +179,7 @@ function Input({ setUnit, model, unit }: InputProps) {
               />
 
               <Select
-                onValueChange={(e: string) => setUnit(e)}
+                onValueChange={(e: UnitType) => setUnit(e)}
                 defaultValue="mg/mol"
               >
                 <SelectTrigger className="w-[120px] rounded-l-none">

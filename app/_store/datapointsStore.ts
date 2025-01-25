@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
 import { DataPoint } from './types';
 
 interface DatapointsState {
@@ -6,9 +7,16 @@ interface DatapointsState {
   setDatapoints: (datapoints: DataPoint[]) => void;
 }
 
-const useDatapointsStore = create<DatapointsState>((set) => ({
-  datapoints: [],
-  setDatapoints: (datapoints) => set(() => ({ datapoints })),
-}));
+const useDatapointsStore = create<DatapointsState>()(
+  devtools(
+    (set) => ({
+      datapoints: [],
+      setDatapoints: (datapoints) => set(() => ({ datapoints })),
+    }),
+    {
+      name: "datapoints"
+    }
+  )
+);
 
 export default useDatapointsStore;
