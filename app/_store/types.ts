@@ -12,8 +12,6 @@ export type Answers = {
   borderColor: string;
   calculation: string;
   outside: string;
-  //specimenBaseDate: Date | null; 
-  //specimenLastDate: Date | null; 
   baseDate: Date | null;
   lastDate: Date | null;
   specimenBase: number
@@ -50,8 +48,11 @@ export type Utilities = {
   setShouldAnimate: (shouldAnimate: boolean) => void;
   lang: string;
   setLang: (value: string) => void;
-  model: ModelType;
-  setModel: (value: ModelType) => void;
   unit: UnitType;
   setUnit: (value: UnitType) => void;
+}
+
+export type ModelStore = {
+  model: ModelType;
+  setModel: (value: ModelType) => void;
 }

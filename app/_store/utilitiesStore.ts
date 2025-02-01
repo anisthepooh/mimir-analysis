@@ -14,8 +14,6 @@ const useUtilitiesStore = create<Utilities>((set) => ({
   setShouldAnimate: (value) => set(() => ({shouldAnimate: value})),
   lang: "da",
   setLang: (value) => set(() => ({lang: value})),
-  model: "cronical",
-  setModel: (value) => set(() => ({model: value})),
   unit: "mg/mol",
   setUnit: (value) => set(() => ({unit: value}))
 }));

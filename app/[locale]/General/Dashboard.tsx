@@ -3,15 +3,15 @@ import React from 'react';
 import { Download, Printer } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
-import { useUtilitiesStore } from '@/app/_store';
 import { ModelType } from '@/app/_store/types';
+import useModelStore from '@/app/_store/modelStore';
 
 interface DashboardProps {}
 
 const Dashboard: React.FC<DashboardProps> = ({ 
 }) => {
   const t = useTranslations(); 
-  const {model, setModel} = useUtilitiesStore()
+  const {model, setModel} = useModelStore()
 
   const displayTag = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.currentTarget.value as ModelType

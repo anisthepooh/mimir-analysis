@@ -14,6 +14,8 @@ import { useAnswersStore, useDatapointsStore, useUtilitiesStore } from '@/app/_s
 import { addDays, differenceInDays, differenceInHours, isAfter, isBefore } from 'date-fns';
 import { useModel } from '@/app/utils/model';
 import { UnitType } from '@/app/_store/types';
+import { isEmpty } from 'lodash';
+import useModelStore from '@/app/_store/modelStore';
 
 function Input() {
   const {call} = useModel()
@@ -29,35 +31,23 @@ function Input() {
     toggleModal,
     setWarning,
     setOpenWarning,
-    model, 
     unit, 
     setUnit
   } = useUtilitiesStore()
-  const {
-    setBaseDate,
-    setLastDate,
-    setSpecimenBase,
-    setSpecimenLast,
-  } = useAnswersStore()
+  const {model} = useModelStore()
   const localActive = useLocale();
   const [lastDate, setDateLast] = useState<Date | null>(null);
   const date = watch('date')
   const value = watch('value')
-
-  useEffect(() => {
-    if (datapoints.length > 0) {
-      //@ts-ignore
-      setDateLast(new Date(useDatapointsStore.getState().datapoints[datapoints.length - 1].date))
-    }
-  }, [datapoints]);
   
 
   useEffect(() => {
+    const {datapoints} = useDatapointsStore.getState()
     //@ts-ignore
-    if (!lastDate || isBefore(date, lastDate)) return
+    if (isEmpty(datapoints) || isBefore(date, datapoints[datapoints.length - 1]?.date)) return
     if (model === "cronical") {
       //@ts-ignore
-      if (differenceInHours(date, lastDate) < 48 ) {
+      if (differenceInHours(date, datapoints[datapoints.length - 1]?.date) < 48 ) {
         setOpenWarning(true)
         setWarning(
           <>
@@ -71,9 +61,9 @@ function Input() {
       } else {
         setOpenWarning(false)
       }
-    } else if (model === "occational" && lastDate) {
+    } else if (model === "occational" && datapoints[datapoints.length - 1]?.date) {
         //@ts-ignore
-        if (differenceInHours(date, lastDate) > 120 ) {
+        if (differenceInHours(date, datapoints[datapoints.length - 1].date) > 120 ) {
           setOpenWarning(true)
           setWarning(
             <>
@@ -89,16 +79,17 @@ function Input() {
     
   },[date])
   
-  const onSubmit = async () => {
+  const onSubmit = () => {
     if (!date || !value) return;
-  
+    const {datapoints } = useDatapointsStore.getState()
+
     // @ts-ignore
-    if (differenceInDays(lastDate, useAnswersStore.getState().answers.baseDate) >= 31) {
+    if (differenceInDays(date, useAnswersStore.getState().answers.baseDate) >= 31) {
       return toggleModal();
     }
-  
+
     // @ts-ignore
-    if (datapoints.length === 0 || isBefore(lastDate, date)) {
+    if (datapoints.length === 0 || isBefore(datapoints[datapoints.length - 1]?.date, date)) {
       const newDatapoint = {
         id: uuidv4(),
         value: Number(value),
@@ -107,7 +98,9 @@ function Input() {
         answerBorder: 'normalBorder',
       };
   
+      // @ts-ignore
       setDatapoints([...datapoints, newDatapoint]);
+      // @ts-ignore
       call(model, unit); // Trigger the model call
       setOpenWarning(false);
       reset();

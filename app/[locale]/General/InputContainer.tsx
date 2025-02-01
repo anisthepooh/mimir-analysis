@@ -5,13 +5,15 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import ResultTable from './ResultTable';
 import WarningMessage from '@/app/Components/WarningMessage';
 import { useUtilitiesStore } from '@/app/_store';
+import useModelStore from '@/app/_store/modelStore';
 
 interface InputContainerProps {
 }
 
 const InputContainer: React.FC<InputContainerProps> = () => {
   const t  = useTranslations();
-  const {model, unit, setUnit} = useUtilitiesStore()
+  const {unit, setUnit} = useUtilitiesStore()
+  const {model} = useModelStore()
 
 
   return (
