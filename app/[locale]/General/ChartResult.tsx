@@ -105,13 +105,20 @@ const ChartResult = () => {
             <XAxis
               dataKey="date"
               tickMargin={8}
-              scale={'time'}
-              type={'number'}
-              ticks={data.map((item) => item.date?.getTime())}
-              tickFormatter={(date) => dateFormatter(new Date(date))} 
+              scale="time"
+              type="number"
+              ticks={data
+                .map((item) => (item?.date ? new Date(item.date).getTime() : null))
+                .filter((timestamp) => timestamp !== null)} // Filter out invalid timestamps
+              tickFormatter={(timestamp) => {
+                const date = new Date(timestamp);
+                return isNaN(date.getTime()) ? '' : dateFormatter(date);
+              }}
               domain={[
-                data[0]?.date.getTime() || 'dataMin', 
-                data[data.length - 1]?.date.getTime() || 'dataMax',
+                data[0]?.date ? new Date(data[0].date).getTime() : 'dataMin',
+                data[data.length - 1]?.date
+                  ? new Date(data[data.length - 1].date).getTime()
+                  : 'dataMax',
               ]}
             />
             <YAxis

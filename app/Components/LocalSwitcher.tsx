@@ -12,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useUtilitiesStore } from '../_store';
 
 // Define a type for supported locales
 type Locale = 'da' | 'en';
@@ -22,6 +23,8 @@ export default function LocaleSwitcher() {
   const pathname = usePathname();
   const localActive = useLocale() as Locale; // Assume `useLocale` returns a valid `Locale`
   const t = useTranslations();
+  const {setLang} = useUtilitiesStore()
+
 
   const onSelectChange = (nextLocale: Locale) => {
     const normalizedPathname = pathname.replace(`/${localActive}`, '');
@@ -29,6 +32,7 @@ export default function LocaleSwitcher() {
     startTransition(() => {
       router.replace(`/${nextLocale}${normalizedPathname}`);
     });
+    setLang(localActive)
   };
 
   return (

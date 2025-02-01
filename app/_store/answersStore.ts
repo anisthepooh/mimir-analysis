@@ -11,9 +11,10 @@ const useAnswersStore = create<AnswersState>()(
         borderColor: 'border-4 border-slate-500',
         calculation: 'defaultAnswers.calculation',
         outside: '',
-        specimenBaseDate: '',
-        specimenLastDate: '',
+        baseDate: null,
+        lastDate: null,
         specimenBase: 0,
+        specimenLast: 0,
       },
       setTitle: (title) => set((state) => ({ answers: { ...state.answers, title } })),
       setText: (text) => set((state) => ({ answers: { ...state.answers, text } })),
@@ -22,12 +23,14 @@ const useAnswersStore = create<AnswersState>()(
       setCalculation: (calculation) =>
         set((state) => ({ answers: { ...state.answers, calculation } })),
       setOutside: (outside) => set((state) => ({ answers: { ...state.answers, outside } })),
-      setSpecimenBaseDate: (specimenBaseDate) =>
-        set((state) => ({ answers: { ...state.answers, specimenBaseDate } })),
-      setSpecimenLastDate: (specimenLastDate) =>
-        set((state) => ({ answers: { ...state.answers, specimenLastDate } })),
+      setBaseDate: (baseDate) =>
+        set((state) => ({ answers: { ...state.answers, baseDate } })),
+      setLastDate: (lastDate) =>
+        set((state) => ({ answers: { ...state.answers, lastDate } })),
       setSpecimenBase: (specimenBase) =>
         set((state) => ({ answers: { ...state.answers, specimenBase } })),
+      setSpecimenLast: (specimenLast) =>
+        set((state) => ({ answers: { ...state.answers, specimenLast } })),
     }),
     { 
       name: 'AnswersStore',
