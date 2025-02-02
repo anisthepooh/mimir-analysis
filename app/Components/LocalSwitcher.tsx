@@ -32,7 +32,7 @@ export default function LocaleSwitcher() {
     startTransition(() => {
       router.replace(`/${nextLocale}${normalizedPathname}`);
     });
-    setLang(localActive)
+    setLang(nextLocale)
   };
 
   return (
