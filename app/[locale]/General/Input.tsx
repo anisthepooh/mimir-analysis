@@ -88,7 +88,7 @@ function Input({ setUnit, model, unit }: InputProps) {
   
   const onSubmit = () => {
     if (!date || !value) return;
-    console.log(useAnswersStore.getState(answers).answers)
+    //@ts-ignore
     if (differenceInDays( useAnswersStore.getState(answers).answers.specimenLastDate,  useAnswersStore.getState(answers).answers.specimenBaseDate) >= 31){
       return toggleModal()
     }
