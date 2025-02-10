@@ -3,24 +3,22 @@ import React from 'react';
 import { Download, Printer } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
+import { ModelType } from '@/app/_store/types';
+import useModelStore from '@/app/_store/modelStore';
 
-interface DashboardProps {
-  model: string;
-  setModel: (model: string) => void;
-}
+interface DashboardProps {}
 
-const Dashboard: React.FC<DashboardProps> = ({
-  model, 
-  setModel, 
+const Dashboard: React.FC<DashboardProps> = ({ 
 }) => {
   const t = useTranslations(); 
+  const {model, setModel} = useModelStore()
 
   const displayTag = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const target = e.currentTarget.value;
+    const target = e.currentTarget.value as ModelType
     if (window.confirm(t('changingModel', { target }))) {
-      setModel(target); // Update the model
+      setModel(target)
       setTimeout(() => {
-        window.location.reload(); // Refresh the page
+        window.location.reload()
       }, 500)              
 
     }

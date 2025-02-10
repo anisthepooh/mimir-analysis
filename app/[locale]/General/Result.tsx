@@ -4,22 +4,12 @@ import { Badge } from '@/components/ui/badge';
 import { useLocale, useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { gt, lt, lte } from 'lodash';
-import { useAnswersStore, useDatapointsStore } from '@/app/_store';
+import { useAnswersStore, useDatapointsStore, useUtilitiesStore } from '@/app/_store';
 
-
-interface ResultProps {
-  model: any
-  unit: any
-}
-
-const Result: React.FC<ResultProps> = ({
-  model,
-  unit,
-}) => {
-  const { datapoints } = useDatapointsStore()
-  const { answers } = useAnswersStore()
+const Result = () => {
   const t  = useTranslations();
-  const localActive = useLocale();
+  const { answers, setSpecimenLast, setBaseDate, setLastDate } = useAnswersStore((state) => state);
+  const datapoints = useDatapointsStore((state) => state.datapoints);
 
   return (
     <Card>

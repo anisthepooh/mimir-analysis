@@ -47,8 +47,10 @@ const ResultTable: React.FC<ResultTableProps> = ({ model, unit }) => {
                 <TableCell>{index + 1}</TableCell>
                 <TableCell>
                   {model === "cronical" ? 
+                  //@ts-ignore
                     new Date(datapoint.date).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' }) 
                     : 
+                    //@ts-ignore
                     new Date(datapoint.date).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false })
                   }
                 </TableCell>

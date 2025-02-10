@@ -66,6 +66,7 @@ const ModelComponent = ({children}) => {
     setSpecimenLastDate(dateLast)
 
     daysBetween(dateBase, dateLast, locale)
+    // ⚠️ Does not do anyting here:
     setUnit(answers.specimenBase, unit, datapoints, locale)
     setModel(modelType, unit, locale)
   }
@@ -237,7 +238,7 @@ const ModelComponent = ({children}) => {
     else {
         if (result < ratio) {
             setBorderColor(borderColors.redBorder)
-            setCalculation(t("case6.calculation", {testNumber1: answers.specimenBase + 1, testNumber2: specimenLast +1}))
+            setCalculation(t("case6.calculation", {testNumber1: answers.specimenBase + 1, testNumber2: answers.specimenLast +1}))
             if (convertSpecimenBase >= 800) {
                 if(convertSpecimeLast < 200){
                     setTitle(t("sign_of_new_use.title"))
@@ -246,7 +247,7 @@ const ModelComponent = ({children}) => {
                 else if (specimenLast - answers.specimenBase >= 1 && oldTitle === false)
                 {
                     setTitle(t("sign_of_new_use.title"))
-                    setText(t("case6.sign_of_new_use.text", {date: dateLast}))
+                    setText(t("sign_of_new_use.text", {date: dateLast}))
                 }
                 else{
                     setTitle(t("case6_3.title"))
@@ -277,7 +278,7 @@ const ModelComponent = ({children}) => {
         }
         oldTitle = false
     }
-  } 
+  }
 
   const calcRatioOCC = (unit, locale ) => {
     const t = createTranslator({locale, messages: messages[locale]});
