@@ -272,7 +272,7 @@ const calculateOCC = () => {
         } 
         else if (result > ratio) {
             setTitle(t("case6_5.title"))
-            setText(t("case6_5.text", {date1: answers.specimenBase, date2: answers.lastDate}))
+            setText(t("case6_5.text", {date1: answers.baseDate, date2: answers.lastDate}))
             setCalculation(t("case6_5.calculation", {testNumber1: answers.specimenBase + 1, testNumber2: answers.specimenLast +1}))
             setBorderColor(borderColors.greenBorder)
         } 
