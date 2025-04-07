@@ -16,7 +16,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: 'My Next.js App',
+  title: 'Mimir analysis',
   icons: {
     icon: '/favicon.ico',
   },

@@ -23,6 +23,7 @@ import { useEffect, useState } from "react"
 import { lte, pick, uniq } from "lodash"
 import { cn } from "@/lib/utils"
 import { useTranslations } from "next-intl"
+import { Progress } from "@/components/ui/progress"
 
 type DataPoint = {
   id: any
@@ -81,12 +82,14 @@ const ChartResult = () => {
       </CardHeader>
       <CardContent className="relative">
          <Card className={cn(
-          "flex absolute right-0 left-0 bottom-0 top-0 h-fit w-fit mx-auto my-auto z-10 shadow-none border-dashed border-2",
+          "flex absolute right-0 left-0 bottom-0 top-0 h-fit w-full mx-auto my-auto z-10 shadow-none border-none justify-center ",
          {"hidden": lte(2, datapoints.length )}
          )}>
-          <CardHeader className="font-medium flex flex-col items-center gap-2">
+          <CardHeader className="font-medium flex flex-col items-center gap-2 w-full">
             <ChartArea size={32} className="text-muted-foreground" />
-            {t('add_to_tests')}
+            <p> { datapoints.length < 1 ? t('add_to_tests') : t('add_one_more') } </p>
+            <Progress value={datapoints.length * 50} max={2} /> 
+
           </CardHeader>
         </Card>
         <ChartContainer config={chartConfig} className={cn(
