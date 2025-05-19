@@ -1,9 +1,10 @@
 export type DataPoint = {
   id: any;
   value: number;
-  date: Date | null;
+  date: Date | string;
   answerTitle: string;
   answerBorder: string;
+  answer: Answers;
 }
 
 export type Answers = {
@@ -14,8 +15,9 @@ export type Answers = {
   outside: string;
   baseDate: Date | null;
   lastDate: Date | null;
-  specimenBase: number
-  specimenLast: number
+  specimenBase: number;
+  specimenLast: number;
+  status: string | null;
 }
 
 export type AnswersState = {
@@ -31,6 +33,7 @@ export type AnswersState = {
   setLastDate: (lastDate: Date) => void;
   setSpecimenBase: (setSpecimenBase: number) => void;
   setSpecimenLast: (setSpecimenLast: number) => void;
+  setStatus: (setStatus: string) => void;
 }
 
 export type UnitType = "mg/mol" | "mg/dL";

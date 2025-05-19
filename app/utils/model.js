@@ -6,6 +6,7 @@ import { param } from './parameters';
 import messages from './locals/local';
 import {addDays, differenceInDays, differenceInHours } from 'date-fns';
 import useModelStore from '../_store/modelStore';
+import { da } from 'date-fns/locale';
 
 const ModelContext = createContext(null);
 
@@ -36,19 +37,54 @@ const Model = ({children}) => {
     setLastDate,
     setSpecimenBase,
     setSpecimenLast, 
+    setStatus,
   } = useAnswersStore()
-  const {lang, unit, } = useUtilitiesStore()
+  const {lang, unit, } = useUtilitiesStore.getState()
   const {model} = useModelStore()
   const t = createTranslator({lang, messages: messages[lang]});
   
   const call = () => {
-    const {datapoints} = useDatapointsStore.getState()
-    const {answers} = useAnswersStore.getState()
-    setSpecimenLast(datapoints?.length - 1)
-    setBaseDate(new Date(datapoints[answers?.specimenBase]?.date)?.toLocaleDateString('dk-DK', {year: 'numeric', month: 'long', day: 'numeric'}))
-    setLastDate(new Date(datapoints[datapoints?.length - 1]?.date)?.toLocaleDateString('dk-DK', {year: 'numeric', month: 'long', day: 'numeric'}))
-    setModel()
-  }
+    const { datapoints, setDatapoints } = useDatapointsStore.getState();
+    const { answers } = useAnswersStore.getState();
+  
+    const lastIndex = datapoints.length - 1;
+  
+    if (lastIndex < 0) return;
+  
+    // Update dates before model logic
+    setSpecimenLast(lastIndex);
+    setBaseDate(new Date(datapoints[answers.specimenBase]?.date).toLocaleDateString('dk-DK', { year: 'numeric', month: 'long', day: 'numeric' }));
+    setLastDate(new Date(datapoints[lastIndex]?.date).toLocaleDateString('dk-DK', { year: 'numeric', month: 'long', day: 'numeric' }));
+  
+    // Run model logic (this modifies answers store)
+    setModel();
+  
+    // Pull updated answers from store again
+    const updatedAnswers = useAnswersStore.getState().answers;
+  
+    // Deep copy datapoints to avoid direct mutation
+    const updatedDatapoints = [...datapoints];
+  
+    // Update the last datapoint
+    updatedDatapoints[lastIndex] = {
+      ...updatedDatapoints[lastIndex],
+      answerTitle: updatedAnswers.title,
+      answerBorder: updatedAnswers.borderColor,
+      answer: updatedAnswers,
+    };
+
+    
+  
+    // Save to store
+    setDatapoints(updatedDatapoints);
+    if (updatedDatapoints[lastIndex]?.answer?.status === "new use") {
+      if (updatedDatapoints[lastIndex]?.answer?.specimenBase + 2 <= datapoints.length  ) {
+        alert("Please select a new specimen2", updatedDatapoints[lastIndex]?.answer?.specimenBase);
+      }
+      alert("Please select a new specimen", updatedDatapoints[lastIndex]?.answer?.specimenBase);
+    }
+  };
+  
 
 const setUnit = (index) => {
   const {datapoints} = useDatapointsStore.getState()
@@ -73,6 +109,7 @@ const calcRatioOCC = () => {
   const {datapoints} = useDatapointsStore.getState()
  
   if (datapoints.length === 1){
+      // Only one datapoint
       setTitle(t("case7.title"))
       setText(t("case7.text", {date: answers.dateBase}))
       setCalculation(t("case7.calculation"))
@@ -94,6 +131,7 @@ const calculateOCC = () => {
   const lastIndex = param.time.length - 1
 
   if (totalHours <= param.time[1]) {
+    // Error msg - not enough time between tests
     setTitle(t("case10.title"))
     setText(t("case10.text"))
     setCalculation(t("case10.calculation", {date1: answers.dateBase, date2: answers.dateLast }))
@@ -105,19 +143,22 @@ const calculateOCC = () => {
   for (let i = 1; i < lastIndex; i++) {
     if (totalHours > param.time[i] && totalHours <= param.time[i + 1]) {
       if (ratio > param.max[i]){
+        //new intake
         setTitle(t("case9.title"))
         setText(t("case9.text", {date1: answers.dateBase, date2: answers.dateLast }))
         setCalculation(t("case9.calculation", {testNumber1: answers.specimenBase + 1, testNumber2: answers.specimenLast +1}))
         setBorderColor(borderColors.redBorder)
         
         setSpecimenBase(answers.specimenLast)
+        setStatus("sign_on_use")
 
     } else {
+        // No new intake
         setTitle(t("case8.title"))
         setText(t("case8.text", {date1: answers.dateBase, date2: answers.dateLast }))
         setCalculation(t("case8.calculation", {testNumber1: answers.specimenBase + 1, testNumber2: answers.specimenLast +1}))
         setBorderColor(borderColors.greenBorder)
-        
+        setStatus("no_new_use")
         setSpecimenBase(answers.specimenLast)
     }
       return
@@ -125,6 +166,7 @@ const calculateOCC = () => {
   }
 
   if (totalHours > param.time[lastIndex]) {
+    // Error msg - not enough time between tests
     setTitle(t("case11.title"))
     setText(t("case11.text"))
     setCalculation(t("case11.calculation", {date1: answers.dateBase, date2: answers.dateLast }))
@@ -149,6 +191,7 @@ const calculateOCC = () => {
     const {answers} = useAnswersStore.getState()
 
     if (convertSpecimenBase <= param.concentration[1]){
+        // Error msg - outside params
         setTitle(t("case3.title"))
         setText(t("case3.text"))
         setCalculation(t("case3.calculation", {testNumber: answers.specimenBase + 1}))
@@ -156,6 +199,7 @@ const calculateOCC = () => {
         setSpecimenBase((prev) => prev + 1)
     }
     else if (convertSpecimenBase > param.concentration[9]){
+        // Error msg - outside params
         setTitle(t("case4.title"))
         setText(t("case4.text", {date: answers.dateBase}))
         setCalculation(t("case4.calculation", {testNumber: answers.specimenBase + 1}))
@@ -163,15 +207,19 @@ const calculateOCC = () => {
         setSpecimenBase((prev) => prev + 1)
     } else {
         if (convertSpecimenBase > 800) {
+            // Need new test to calculate
             setTitle(t("case1.title"))
             setText(t("case1.text"))
             setBorderColor(borderColors.normalBorder)
             setCalculation(t("case1.calculation", {testNumber: answers.specimenBase + 1}))
+            setStatus("new_test_required")
         } else {
+            // Need new test to calculate
             setTitle(t("case2.title"))
             setText(t("case2.text"))
             setBorderColor(borderColors.normalBorder)
             setCalculation(t("case2.calculation", {testNumber: answers.specimenBase + 1}))
+            setStatus("new_test_required")
         }
     }
   }
@@ -183,6 +231,7 @@ const calculateOCC = () => {
     const lastIndex = param.concentration.length - 1
     for (index; index < lastIndex; index++) {
       if (convertSpecimenBase <= param.concentration[1]) {
+        // Error msg - outside params
         setTitle(t("case3.title"))
         setText(t("case3.text"))
         setBorderColor(borderColors.blackBorder)
@@ -199,6 +248,7 @@ const calculateOCC = () => {
     }
 
       if (convertSpecimenBase > param.concentration[lastIndex]) {
+        // Error msg - outside params
         setTitle(t("case4.title"))
         setText(t("case4.text"))
         setBorderColor(borderColors.blackBorder)
@@ -224,6 +274,7 @@ const calculateOCC = () => {
     const result = getUpperLimit(index)
 
     if (convertSpecimeLast <= param.concentration[1]){
+        // Error msg - outside params
         setTitle(t("case5.title"))
         setText(t("case5.text"))
         setCalculation(t("case5.calculation", {testNumber: answers.specimenBase + 1}))
@@ -231,6 +282,7 @@ const calculateOCC = () => {
         setSpecimenBase(answers.specimenLast)
     }
     else if (convertSpecimeLast > param.concentration[9]){
+        // Error msg - outside params
         setTitle(t("case4.title"))
         setText( t("case4.text"))
         setCalculation(t("case4.calculation"))
@@ -243,15 +295,20 @@ const calculateOCC = () => {
             setCalculation(t("case6.calculation", {testNumber1: answers.specimenBase + 1, testNumber2: answers.specimenLast +1}))
             if (convertSpecimenBase >= 800) {
                 if(convertSpecimeLast < 200){
-                    setTitle(t("sign_of_new_use.title"))
-                    setText(t("sign_of_new_use.text", {date: answers.lastDate}))
+                  // New intake
+                    setTitle(t("case6_1.title"))
+                    setText(t("case6_1.text", {date: answers.lastDate}))
+                    setStatus("sign_on_use")
                 }
                 else if (answers.specimenLast - answers.specimenBase >= 1)
                 {
-                    setTitle(t("sign_of_new_use.title"))
-                    setText(t("sign_of_new_use.text", {date: answers.lastDate}))
+                  // New intake
+                    setTitle(t("case6_1.title"))
+                    setText(t("case6_1.text", {date: answers.lastDate}))
+                    setStatus("sign_on_use")
                 }
                 else{
+                    // Risk of false predication
                     setTitle(t("case6_3.title"))
                     setText(t("case6_3.text", {date: answers.baseDate, nextDate: addDays(new Date(datapoints[answers.specimenBase].date), 15).toLocaleDateString('da-DK', { year: 'numeric', month: 'long', day: 'numeric' })}))
                     setBorderColor(borderColors.orangeBorder)
@@ -259,22 +316,28 @@ const calculateOCC = () => {
             }
             else if (convertSpecimenBase < 800) {
                 if (answers.specimenLast > 1){
-                    setTitle(t("sign_of_new_use.title"))
-                    setText(t("sign_of_new_use.text", {date: answers.lastDate}))
+                    // New intake
+                    setTitle(t("case6_1.title"))
+                    setText(t("case6_1.text", {date: answers.lastDate}))
                     setBorderColor(borderColors.redBorder)
+                    setStatus("sign_on_use")
                 } else {
+                    // Requies new test
                     setTitle(t("case6_4_2.title"))
                     setText(t("case6_4_2.text", {date: answers.lastDate}))
                     setBorderColor(borderColors.orangeBorder)
+                    setStatus("new_test_required")
                 }
             }
             setSpecimenBase(answers.specimenLast)
         } 
         else if (result > ratio) {
+            // No new intake
             setTitle(t("case6_5.title"))
             setText(t("case6_5.text", {date1: answers.baseDate, date2: answers.lastDate}))
             setCalculation(t("case6_5.calculation", {testNumber1: answers.specimenBase + 1, testNumber2: answers.specimenLast +1}))
             setBorderColor(borderColors.greenBorder)
+            setStatus("no_new_use")
         } 
     }
   } 

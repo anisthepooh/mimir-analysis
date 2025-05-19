@@ -15,6 +15,7 @@ const useAnswersStore = create<AnswersState>()(
         lastDate: null,
         specimenBase: 0,
         specimenLast: 0,
+        status: null,
       },
       setTitle: (title) => set((state) => ({ answers: { ...state.answers, title } })),
       setText: (text) => set((state) => ({ answers: { ...state.answers, text } })),
@@ -31,6 +32,8 @@ const useAnswersStore = create<AnswersState>()(
         set((state) => ({ answers: { ...state.answers, specimenBase } })),
       setSpecimenLast: (specimenLast) =>
         set((state) => ({ answers: { ...state.answers, specimenLast } })),
+      setStatus: (status) =>
+        set((state) => ({ answers: { ...state.answers, status } })),
     }),
     { 
       name: 'AnswersStore',

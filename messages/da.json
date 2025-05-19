@@ -1,4 +1,5 @@
 {
+  "status": "Status",
   "license": "©2024 Mimir - Cannabis Test Rapport. Dette websted og dets indhold er beskyttet under GNU Affero General Public License version 3 (AGPL-3.0). Denne software er distribueret i håbet om at være nyttig, men UDEN NOGEN GARANTI; uden endda den stiltiende garanti om SALGBARHED eller EGNETHET TIL ET BESTEMT FORMÅL. Se GNU Affero General Public License for flere detaljer.",
   "enterData": "Indtast dato'er og prøve resultater for at få vist en graf over resultater",
   "changingModel": "Du ændrer nu modellen til {target}, bekræft for at ændre.",
