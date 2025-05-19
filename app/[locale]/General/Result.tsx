@@ -8,8 +8,9 @@ import { useAnswersStore, useDatapointsStore, useUtilitiesStore } from '@/app/_s
 
 const Result = () => {
   const t  = useTranslations();
-  const { answers, setSpecimenLast, setBaseDate, setLastDate } = useAnswersStore((state) => state);
   const datapoints = useDatapointsStore((state) => state.datapoints);
+
+  const datapointsLength = datapoints.length - 1
 
   return (
     <Card>
@@ -18,21 +19,22 @@ const Result = () => {
         <CardDescription>{t('interpretation_description')}</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className={` p-4 mt-8 rounded-lg ${answers.borderColor}`}>
+        <div className={` p-4 mt-8 rounded-lg ${datapoints[datapointsLength]?.answer?.borderColor}`}>
           <h3 className="font-semibold tracking-tight" defaultValue="Resultat titel">
-            { lt(datapoints.length, 1) ? t('defaultAnswers.title') : answers.title }
+            { lt(datapoints.length, 1) ? t('defaultAnswers.title') : datapoints[datapointsLength].answer.title }
           </h3>
           <p className="mt-4 text-sm text-muted-foreground" defaultValue="Tekst forklaring">
-          { lt(datapoints.length, 1) ? t('defaultAnswers.text') : answers.text }
+          { lt(datapoints.length, 1) ? t('defaultAnswers.text') : datapoints[datapointsLength].answer.text }
           </p>
         </div>
-        <div className={`mt-4 rounded-lg p-4 ${answers.borderColor}`}>
+        <div className={`mt-4 rounded-lg p-4 ${datapoints[datapointsLength]?.answer?.borderColor}`}>
           <p className='text-sm text-muted-foreground'>
-          { lt(datapoints.length, 1) ? t('defaultAnswers.calculation') : answers.calculation }
+          { lt(datapoints.length, 1) ? t('defaultAnswers.calculation') : datapoints[datapointsLength].answer.calculation }
             <br />
             <br />
-            { lt(datapoints.length, 1) ? "" : answers.outside }
+            { lt(datapoints.length, 1) ? "" : datapoints[datapointsLength].answer.outside }
           </p>
+          {datapoints[datapointsLength]?.answer?.status}
         </div>
         <CardFooter className='p-0'>
           <div className="flex justify-center flex-wrap mt-4 gap-2">

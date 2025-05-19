@@ -1,5 +1,6 @@
 const messages = {
   "da": {
+      "status": "Status",
       "license": "©2024 Mimir - Cannabis Test Rapport. Dette websted og dets indhold er beskyttet under GNU Affero General Public License version 3 (AGPL-3.0). Denne software er distribueret i håbet om at være nyttig, men UDEN NOGEN GARANTI; uden endda den stiltiende garanti om SALGBARHED eller EGNETHET TIL ET BESTEMT FORMÅL. Se GNU Affero General Public License for flere detaljer.",
       "changingModel": "Du ændrer nu modellen til {target}, bekræft for at ændre.",
       "interpretation": "Fortolkning",
@@ -81,7 +82,7 @@ const messages = {
       "case6": {
         "calculation": "Modellen har givet følgende resultat baseret på test nr. {testNumber1} og test nr. {testNumber2}"
       },
-      "sign_of_new_use": {
+      "case6_1": {
         "title": "Tegn på nyt indtag",
         "text": "Der er evidens for nyt forbrug. Næste beregning vil ske med udgangspunkt i testen fra den {date}"
       },
@@ -128,6 +129,7 @@ const messages = {
       }
   },
   "en": {
+      "status": "Status",
       "license": "©2024 Mimir - Cannabis Test Report. This website and its content are protected under the GNU Affero General Public License version 3 (AGPL-3.0). This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.",
       "enterData": "Enter dates and test results to display a graph of the results",
       "changingModel": "You are now changing the model to {target} confirm to change.", 
@@ -209,8 +211,8 @@ const messages = {
       },
       "case6": {
         "calculation": "The model has given the following result based on test no. {testNumber1} and test no. {testNumber2}"
-      },
-      "sign_of_new_use": {
+      }, 
+      "case6_1": {
         "title": "Sign of new intake",
         "text": "There is evidence of new use. The next calculation will be based on the test from {date}."
       },
