@@ -34,7 +34,6 @@ const Result = () => {
             <br />
             { lt(datapoints.length, 1) ? "" : datapoints[datapointsLength].answer.outside }
           </p>
-          {datapoints[datapointsLength]?.answer?.status}
         </div>
         <CardFooter className='p-0'>
           <div className="flex justify-center flex-wrap mt-4 gap-2">

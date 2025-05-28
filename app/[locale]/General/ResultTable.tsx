@@ -16,45 +16,6 @@ const ResultTable: React.FC<ResultTableProps> = ({ model, unit }) => {
   const { answers } = useAnswersStore()
   const locale = useLocale();
 
-  const renderBadge = (status: string) => {
-    switch (status) {
-      case 'no_answer':
-        return (
-          <Badge className="flex items-center gap-1 bg-slate-200 text-slate-800">
-            <Tag size={12} />
-            <span className="text-xs">{t('badges.no_answer')}</span>
-          </Badge>
-        ) 
-      case 'new_test_required':
-        return (
-          <Badge className="flex items-center gap-1 bg-orange-200 text-orange-800">
-            <Tag size={12} />
-            <span className="text-xs">{t('badges.new_test_required')}</span>
-          </Badge>
-        )
-      case 'sign_on_use':
-        return (
-          <Badge className="flex items-center gap-1 bg-red-200 text-red-800">
-            <Tag size={12} />
-            <span className="text-xs">{t('badges.sign_on_use')}</span>
-          </Badge>
-        )
-      case 'no_new_use':
-        return (
-          <Badge className="flex items-center gap-1 bg-green-200 text-green-800">
-            <Tag size={12} />
-            <span className="text-xs">{t('badges.no_new_use')}</span>
-          </Badge>
-        )
-      default:
-        return (
-          <Badge className="flex items-center gap-1 bg-slate-200 text-slate-800">
-            <Tag size={12} />
-            <span className="text-xs">{t('badges.no_answer')}</span>
-          </Badge>
-        )
-    }
-  }
   return (
     <div className="mt-8 w-full">
       <div className="overflow-x-auto rounded-lg w-full">
@@ -79,12 +40,6 @@ const ResultTable: React.FC<ResultTableProps> = ({ model, unit }) => {
                   {t('test_value')}
                 </div>
               </TableHead>
-              <TableHead>
-                <div className="flex-col sm:flex-row  flex items-center gap-1">
-                  <TestTube className="w-4 h-4" />
-                  {t('status')}
-                </div>
-              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -101,9 +56,6 @@ const ResultTable: React.FC<ResultTableProps> = ({ model, unit }) => {
                   }
                 </TableCell>
                 <TableCell>{datapoint.value} {unit}</TableCell>
-                <TableCell>
-                  { renderBadge(datapoint.answer.status) }
-                </TableCell>
               </TableRow>
             ))}
           </TableBody>
