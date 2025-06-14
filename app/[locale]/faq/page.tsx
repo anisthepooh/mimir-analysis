@@ -4,6 +4,9 @@ import Content from './Content'
 import GradientWrapper from '@/app/Components/GradientWrapper';
 import Loading from './loading';
 
+// ISR: Revalidate FAQ page every 60 seconds
+export const revalidate = 60
+
 const page = async () => {
   const faqs = await getFaqs();
   return (
