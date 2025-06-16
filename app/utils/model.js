@@ -56,7 +56,7 @@ const Model = ({children}) => {
       const testsSinceNewUse = lastIndex - answers.lastNewUseIndex;
       setTestsSinceNewUse(testsSinceNewUse);
       
-      if (testsSinceNewUse < 3) {
+      if (testsSinceNewUse < 2) {
         // Not enough tests since last new use - show warning and skip analysis
         setTitle(t("case12.title"));
         setText(t("case12.text", {required: 3, current: testsSinceNewUse}));
