@@ -124,6 +124,11 @@ const messages = {
         "text": "Antal timer imellem testene er for høj til modellen. Foretag derfor en ny test som ikke er mere end 120 timer efter seneste test",
         "calculation": "Modellen kan ikke give et resultat baseret på den lange afstand mellem følgende datoer {date1} og {date2}"
       },
+      "case12": {
+        "title": "Utilstrækkelige tests siden sidste nye indtag",
+        "text": "Der skal være mindst {required} tests siden sidste detekterede nye indtag. Nuværende antal: {current}. Tag flere tests før næste analyse.",
+        "calculation": "Model nulstillet efter detektering af nyt indtag - kræver flere tests"
+      },
       "Navbar": {
           "select_language": "Skift sprog"
       }
@@ -253,6 +258,11 @@ const messages = {
         "title": "The time between the two tests is too long",
         "text": "The number of hours between the tests is too high for the model. Therefore, take a new test no more than 120 hours after the most recent test.",
         "calculation": "The model cannot provide a result based on the long interval between the following dates {date1} and {date2}."
+      },
+      "case12": {
+        "title": "Insufficient tests since last new use",
+        "text": "At least {required} tests are required since the last detected new use. Current count: {current}. Take more tests before next analysis.",
+        "calculation": "Model reset after new use detection - requires more tests"
       },
       "Navbar": {
         "select_language": "Change language"

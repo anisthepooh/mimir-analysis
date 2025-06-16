@@ -1,4 +1,5 @@
 {
+  "cronical": "Chronic",
   "status": "Status",
   "message": "Hello {name}!",
   "license": "©2024 Mimir - Cannabis Test Report. This website and its content are protected under the GNU Affero General Public License version 3 (AGPL-3.0). This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.",

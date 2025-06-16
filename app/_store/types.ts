@@ -18,6 +18,8 @@ export type Answers = {
   specimenBase: number;
   specimenLast: number;
   status: string | null;
+  lastNewUseIndex: number | null;
+  testsSinceNewUse: number;
 }
 
 export type AnswersState = {
@@ -34,6 +36,9 @@ export type AnswersState = {
   setSpecimenBase: (setSpecimenBase: number) => void;
   setSpecimenLast: (setSpecimenLast: number) => void;
   setStatus: (setStatus: string) => void;
+  setLastNewUseIndex: (index: number | null) => void;
+  setTestsSinceNewUse: (count: number) => void;
+  resetAfterNewUse: (currentIndex: number) => void;
 }
 
 export type UnitType = "mg/mol" | "mg/dL";
