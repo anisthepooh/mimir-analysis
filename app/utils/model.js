@@ -1,12 +1,11 @@
 'use client'
 import { createTranslator } from 'next-intl';
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext } from 'react'
 import { useAnswersStore, useDatapointsStore, useUtilitiesStore } from '../_store';
 import { param } from './parameters';
 import messages from './locals/local';
-import {addDays, differenceInDays, differenceInHours } from 'date-fns';
+import {addDays, differenceInHours } from 'date-fns';
 import useModelStore from '../_store/modelStore';
-import { da } from 'date-fns/locale';
 
 const ModelContext = createContext(null);
 
@@ -32,12 +31,13 @@ const Model = ({children}) => {
     setText, 
     setBorderColor, 
     setCalculation,
-    setOutside,
     setBaseDate,
     setLastDate,
     setSpecimenBase,
     setSpecimenLast, 
     setStatus,
+    setTestsSinceNewUse,
+    resetAfterNewUse,
   } = useAnswersStore()
   const {lang, unit, } = useUtilitiesStore.getState()
   const {model} = useModelStore()
@@ -50,6 +50,32 @@ const Model = ({children}) => {
     const lastIndex = datapoints.length - 1;
   
     if (lastIndex < 0) return;
+
+    // Check if we have enough tests since last new use detection
+    if (answers.lastNewUseIndex !== null) {
+      const testsSinceNewUse = lastIndex - answers.lastNewUseIndex;
+      setTestsSinceNewUse(testsSinceNewUse);
+      
+      if (testsSinceNewUse < 2) {
+        // Not enough tests since last new use - show warning and skip analysis
+        setTitle(t("case12.title"));
+        setText(t("case12.text", {required: 3, current: testsSinceNewUse}));
+        setCalculation(t("case12.calculation"));
+        setBorderColor(borderColors.normalBorder);
+        setStatus("insufficient_tests");
+        
+        const updatedDatapoints = [...datapoints];
+        const updatedAnswers = useAnswersStore.getState().answers;
+        updatedDatapoints[lastIndex] = {
+          ...updatedDatapoints[lastIndex],
+          answerTitle: updatedAnswers.title,
+          answerBorder: updatedAnswers.borderColor,
+          answer: updatedAnswers,
+        };
+        setDatapoints(updatedDatapoints);
+        return;
+      }
+    }
   
     // Update dates before model logic
     setSpecimenLast(lastIndex);
@@ -73,16 +99,13 @@ const Model = ({children}) => {
       answer: updatedAnswers,
     };
 
-    
+    // Check if new use was detected and reset model
+    if (updatedAnswers.status === "sign_on_use") {
+      resetAfterNewUse(lastIndex);
+    }
   
     // Save to store
     setDatapoints(updatedDatapoints);
-    if (updatedDatapoints[lastIndex]?.answer?.status === "new use") {
-      if (updatedDatapoints[lastIndex]?.answer?.specimenBase + 2 <= datapoints.length  ) {
-        alert("Please select a new specimen2", updatedDatapoints[lastIndex]?.answer?.specimenBase);
-      }
-      alert("Please select a new specimen", updatedDatapoints[lastIndex]?.answer?.specimenBase);
-    }
   };
   
 
@@ -125,8 +148,7 @@ const calculateOCC = () => {
   const roundedSpecimenBase = setUnit(answers.specimenBase)
   const roundedSpecimenLast = setUnit(answers.specimenLast)
   const totalHours = differenceInHours(datapoints[datapoints.length -1].date, datapoints[answers.specimenBase].date);
-  const ratio = roundedSpecimenLast / roundedSpecimenBase;
-  const roundedRatio = Math.floor(ratio * 100) / 100 
+  const ratio = roundedSpecimenLast / roundedSpecimenBase; 
 
   const lastIndex = param.time.length - 1
 
