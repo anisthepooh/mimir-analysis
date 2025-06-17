@@ -126,7 +126,7 @@ const messages = {
       },
       "Navbar": {
           "select_language": "Skift sprog"
-      }
+      },
   },
   "en": {
       "status": "Status",
@@ -256,7 +256,7 @@ const messages = {
       },
       "Navbar": {
         "select_language": "Change language"
-      }
+      },
     }
   }
 

@@ -5,10 +5,11 @@ import { useLocale, useTranslations } from 'next-intl';
 import LocalSwitcher from '@/app/Components/LocalSwitcher';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
-import { TestTubeDiagonal, Menu, X } from 'lucide-react';
+import { TestTubeDiagonal, Menu, X, Lock } from 'lucide-react';
 import { usePreventScroll } from '@/app/utils/usePreventScroll';
 import Logo from '@/app/Components/Logo';
 import { useUtilitiesStore } from '@/app/_store';
+import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
   const t = useTranslations();
@@ -78,6 +79,12 @@ const Navbar = () => {
               </Link>
             </li>
           ))}
+          <Button variant={'link'} asChild>
+          <Link href="https://mimir-analysis.netlify.app/admin">
+            <Lock />
+            Admin
+          </Link>
+        </Button>
           <div className="ml-4 flex space-x-2">
             <LocalSwitcher />
           </div>
@@ -114,6 +121,12 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
+        <Button variant={'link'} asChild>
+          <Link href="https://mimir-analysis.netlify.app/admin">
+            <Lock />
+            Admin
+          </Link>
+        </Button>
         <div className="p-4">
           <LocalSwitcher />
         </div>

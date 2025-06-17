@@ -51,7 +51,34 @@ export async function getArticles(): Promise<Article[]> {
     })
 
     return client.fetch(
-      groq`*[_type == "article"]{
+      groq`*[_type == "article"] | order(publishedAt desc){
+        _id,
+        _createdAt,
+        title,
+        "slug": slug.current,
+        publishedAt,
+        "authorImage": author->image.asset->url,
+        "authorFirstname": author->firstname,
+        "authorLastname": author->lastname,
+        "authorTitle": author->title,
+        "coverImage": coverImage.asset->url,
+        content,
+        resume,
+        attachementName,
+        "attatchment": attatchment->url,
+      }`
+    );
+}
+
+export async function getLatestArticles(limit: number = 2): Promise<Article[]> {
+  const client = createClient({
+    projectId: "8fzky4zl",
+    dataset: "production",
+    apiVersion: "1",
+    })
+
+    return client.fetch(
+      groq`*[_type == "article"] | order(publishedAt desc)[0...${limit}]{
         _id,
         _createdAt,
         title,
