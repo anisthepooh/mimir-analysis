@@ -13,6 +13,8 @@
   "chronical_use": "Kronisk forbrug",
   "occational_use": "Sporalisk forbrug",
   "download_report": "Download rapport",
+  "generated_on": "Genereret den",
+  "test_history": "Testhistorik",
   "enter_values": "Indtast test værdier",
   "graph_heading": "Graf over resultater",
   "test_nb": "Test nr.",
